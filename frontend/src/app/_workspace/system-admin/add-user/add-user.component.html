@@ -1,0 +1,64 @@
+<app-screen-container [title]="'Create New System User'" [breadscrums]="breadscrums">
+    <form #formInfo="ngForm" class="form m-4"  [formGroup]="stdForm">
+        <div class="col-md-12 col-sm-12" >
+            <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
+                <mat-label class="">First Name</mat-label>
+                <input matInput [(ngModel)]="userModel.fname" [formControl]="stdForm.get('fname')">
+            </mat-form-field>
+
+            <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
+                <mat-label class="">Last Name</mat-label>
+                <input matInput [(ngModel)]="userModel.lname" [formControl]="stdForm.get('lname')">
+            </mat-form-field>                     
+        </div>
+
+        <div class="col-md-12 col-sm-12">
+            <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
+                <mat-label class="">Social Identify</mat-label>
+                <input matInput [(ngModel)]="userModel.socialId" [formControl]="stdForm.get('socialId')">
+            </mat-form-field>
+
+            <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
+            <mat-label class="">Email</mat-label>
+            <input matInput [(ngModel)]="userModel.email" [formControl]="stdForm.get('email')">
+            
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <mat-form-field style="margin:10px; width:250px" appearance="fill">
+                <mat-label>Phone</mat-label>
+                    <input matInput [(ngModel)]="userModel.phone" [formControl]="stdForm.get('phone')">
+             </mat-form-field>
+             <mat-form-field style="margin:10px; width:250px" appearance="fill">
+                <mat-label>Password</mat-label>
+                    <input matInput input type="password" [(ngModel)]="userModel.password" [formControl]="stdForm.get('password')" >
+             </mat-form-field>
+            </div>
+            <div class="col-md-12 col-sm-12">
+             <mat-form-field style="margin:10px; width:250px" appearance="fill">
+                <mat-label>Role</mat-label>
+                    <mat-select name ="role" [(ngModel)]="userModel.role"[formControl]="stdForm.get('role')"                    > 
+                    <mat-option value="Admin">Admin</mat-option>
+                    <mat-option value="ProgramManager">ProgramManager</mat-option>
+                    <mat-option value="MuncipalityManager">MuncipalityManager</mat-option>
+                    <mat-option value="SchoolStaff">SchoolStaff</mat-option>
+                    <!-- <mat-option *ngFor="let userRole of userRoles" [value]="userRole.role">{{userRole.role}}</mat-option> -->
+
+                    </mat-select>           
+                
+                    <!-- <mat-option *ngFor="let role of role" [value]="role.value">
+                      {{Role.viewValue}}
+                    </mat-option>
+                  </mat-select> -->
+                </mat-form-field>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <button class="btn-space"  [disabled]="!stdForm.valid " mat-raised-button
+              color="primary" (click)="addUser()">Save</button>
+            <button type="button" mat-button (click)="backToList()">Cancel</button>
+          </div>                 
+      </form>
+</app-screen-container>
+<app-screen-container [title]="'Tsofen'" [breadscrums]="breadscrums">
+    update student
+ </app-screen-container>

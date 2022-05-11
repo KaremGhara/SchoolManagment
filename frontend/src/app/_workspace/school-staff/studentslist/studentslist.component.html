@@ -1,0 +1,4 @@
+<h2>Students list</h2>
+<div *ngFor="let student of students" class="student">
+    <app-studentcard [student]="student" (onStudentSelected)="studentSelected($event)"></app-studentcard>
+</div>

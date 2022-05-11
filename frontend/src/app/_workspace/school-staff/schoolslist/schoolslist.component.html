@@ -1,0 +1,4 @@
+<h2>Schools List</h2>
+<div *ngFor="let school of schools" class="school">
+  <app-schoolcard [school]="school" (onSchoolSelected)="schoolSelected($event)" ></app-schoolcard>
+</div>

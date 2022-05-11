@@ -1,0 +1,20 @@
+
+<div class="container">
+    <h3 mat-dialog-title>{{data.message}}</h3>
+    <div mat-dialog-actions class="mb-1">
+        <input type="file"  (change)="uploadFile($event)" accept=".xlsx"/>
+        <button mat-flat-button  color="primary" (click)="uploadStds(data.id)">
+            Import
+        </button>
+
+        <button mat-flat-button color="warn"   tabindex="-1"  (click)="onNoClick()">Cancel</button>
+         <!-- Loading spinner -->
+   <div *ngIf="isTblLoading" class="tbl-spinner">
+    <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+    </div>
+</div>
+
+  
+  

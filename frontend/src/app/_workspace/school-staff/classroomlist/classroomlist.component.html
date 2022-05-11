@@ -1,0 +1,4 @@
+<h2>Classrooms list</h2>
+<div *ngFor="let classroom of classrooms" class="classroom">
+    <app-classroomcard [classroom]="classroom" (onClassRoomSelected)="classRoomSelected($event)"></app-classroomcard>
+</div>

@@ -1,0 +1,78 @@
+<app-screen-container [title]="'Show Schools'" [breadscrums]="breadscrums">
+    
+    <div class="mat-elevation-z8">
+        <div class="materialTableHeader">
+            <div class="row">
+              <div class="col-8">
+                <ul class="header-buttons-left ml-0">
+                  <li class="dropdown">
+                    <h2>
+                      <strong>schools</strong></h2>
+                  </li>
+                  <li class="dropdown m-l-20">
+                    <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                    <input  placeholder="Search" autocomplete="off" type="text" (keyup)="applyFilter($event)" class="browser-default search-field"
+                      aria-label="Search box">
+                  </li>
+                   
+                </ul>
+              </div>
+              <div class="col-4">
+                <ul class="header-buttons">
+                  <li>
+                    <div class="icon-button-demo">
+                      <button mat-mini-fab color="primary" (click)="refresh()">
+                        <mat-icon class="col-white">refresh
+                        </mat-icon>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+                
+          <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" >   
+          
+           <!-- NAME Column -->
+           <ng-container matColumnDef="name">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>Name
+             </mat-header-cell>
+             <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+           </ng-container>
+           <!-- ADDRESS Column -->
+           <ng-container matColumnDef="address">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>Address
+             </mat-header-cell>
+             <mat-cell *matCellDef="let row"> {{row.address}}
+             </mat-cell>
+           </ng-container>
+
+           <ng-container matColumnDef="management">
+            <mat-header-cell *matHeaderCellDef>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row;">
+              <button mat-raised-button color="primary" (click)="allStudents(row.id,row.name)">Manage Students</button>
+            </mat-cell>
+          </ng-container>
+           
+                       <mat-header-row *matHeaderRowDef="displayedColumns">
+                       </mat-header-row>
+                       <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+                       <mat-row *matRowDef="let row; columns: displayedColumns;"
+                         [style.cursor]="'pointer'" matRipple>
+                       </mat-row>
+                     </mat-table>
+  
+  
+   <!-- Loading spinner -->
+   <div *ngIf="isTblLoading" class="tbl-spinner">
+    <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+  
+  
+  <mat-paginator [pageSizeOptions]="[20, 5, 10, 50,100]" aria-label="Select page of schools"></mat-paginator>
+      </div>
+  
+  </app-screen-container>

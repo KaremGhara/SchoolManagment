@@ -1,0 +1,14 @@
+<h2>Programs list</h2>
+<div class="card" style="margin:15px; width:250px">
+    <div class="alert alert-info">Joined</div>
+    <div *ngFor="let program of programs" >
+        <app-programcard [studentId]="studentId" [program]="program" (onClick)="refreshPrograms($event)" > </app-programcard>
+    </div>
+</div>
+
+<div class="card" style="margin:15px; width:250px">
+    <div class="alert alert-info">Avilable</div>
+    <div *ngFor="let aviableProgram of aviablePrograms">
+        <app-aviable-program-card [studentId]="studentId" [aviableProgram]="aviableProgram" (onClick)="refreshPrograms($event)" > </app-aviable-program-card>
+    </div>
+</div>

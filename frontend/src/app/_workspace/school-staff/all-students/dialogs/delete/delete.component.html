@@ -1,0 +1,10 @@
+<div class="container">
+    <h3 mat-dialog-title>{{data.message}}</h3>
+    <div mat-dialog-actions class="mb-1">
+        
+        <button mat-flat-button color="warn" [mat-dialog-close]="true" (click)="deleteStud(data.id)">
+            Delete
+        </button>
+        <button mat-flat-button  [mat-dialog-close]="false" (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<app-screen-container [title]="'Update Student'" [breadscrums]="breadscrums">
+    <form #formInfo="ngForm" class="form m-4"  [formGroup]="stdForm">
+        <div class="col-md-12 col-sm-12">
+            <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
+                <mat-label class="">First Name</mat-label>
+                <input matInput [(ngModel)]="studentModel.firstName" [formControl]="stdForm.get('Fname')"  required>
+            </mat-form-field>
+            <mat-form-field style="margin:10px; width:250px" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput [(ngModel)]="studentModel.lastName" [formControl]="stdForm.get('Lname')" required>
+            </mat-form-field>
+            <mat-form-field style="margin:10px; width:250px" appearance="fill">
+                <mat-label>Class Room</mat-label>
+                <mat-select [(ngModel)]="studentModel.classroom" [formControl]="stdForm.get('classroom')" placeholder="Class Room">
+                    <mat-option *ngFor="let classroom of classRooms" [value]="classroom">{{classroom.grade}} - {{classroom.ordinalNumber}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <mat-form-field style="margin:10px; width:250px" appearance="fill">
+                <mat-label>Social Identify</mat-label>
+                <input matInput [formControl]="stdForm.get('socialId')" [(ngModel)]="studentModel.socialId" required>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <button class="btn-space" (click)="updateUser()" [disabled]="!stdForm.valid " mat-raised-button
+              color="primary">Submit</button>
+            <button type="button" mat-button (click)="backToList()">Cancel</button>
+          </div>                 
+      </form>
+</app-screen-container>

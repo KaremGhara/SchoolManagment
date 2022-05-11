@@ -1,0 +1,72 @@
+<app-screen-container [title]="' '" [breadscrums]="breadscrums">
+    
+    <app-school-selector style="margin-left: 43%;" (onSchoolSelected)="schoolWasSelected($event)"></app-school-selector>
+      <section class="content">
+        <div class="content-block">
+
+    <!-- <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="card"> -->
+            <div class="header" style="  display: flex;
+            justify-content: center;">
+              <h1>School :{{school.name}}</h1>
+            </div>
+            <div class="body">
+
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="width:40%">
+                    <h4 style="margin-left:40%" >Available programs</h4>                    
+                  <div class="board" style="margin-left: 35%;width:250px;height:300px; background-color: rgb(245, 248, 250);border: 0.1px solid #078fae45">                
+                    <div class="cards" id="left"  >                                        
+                      <div class="container"  (click)="selectProg(program.id)" [value]=program.id *ngFor="let program of programsNotLinked">                          
+                        <div class="drop-card" >                        
+                            <span class="table-img msg-user">  </span>                    
+                          <span class="cardtitle noselect"> {{program.name}}</span></div>    
+                      </div>            
+                    </div> 
+                  </div>
+                </div>
+
+                
+            
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="width:10%"> 
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br> 
+                    <div  style="margin-left:30% ; width:1500px">  
+                    Attach program: {{selectedProgId.name}}  
+                    </div>          
+                    <button class="btn-space"   style="margin-left:50% ;" mat-raised-button
+                          color="primary" (click)="attachProgToSchool()">attach</button>
+
+                
+            </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="width:40% ">
+                    <h4 style="margin-left:35%">Linked programs</h4>
+                  <div class="board" style="margin-left:30%;width:250px;height:300px;background-color: rgb(245, 248, 250);border: 0.1px solid #078fae45">
+                    <div class="cards" id="right" >
+                      <div class="container"  *ngFor="let program of programs">
+                        <div class="drop-card" >                        
+                            <span class="table-img msg-user">  </span>                    
+                          <span class="cardtitle noselect"> {{program.name}}</span></div>    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- </div>
+      </div>
+    </div> -->
+    
+    </section>
+       
+
+    
+<!-- <p>selected value {{selectedId}}</p>  -->
+</app-screen-container> 
+

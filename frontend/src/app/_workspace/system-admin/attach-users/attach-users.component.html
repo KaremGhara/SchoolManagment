@@ -1,0 +1,28 @@
+<app-screen-container [title]="'Attach Users'" [breadscrums]="breadscrums">
+  <div class="body">
+      <div class="alert alert-info">
+       move users to report
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="board">
+            <div class="cards" id="left">
+              <div *ngFor="let user of users" class="user">
+
+                  <app-card [user]="user" ></app-card>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="board">
+            <div class="cards" id="right">
+              <div class="container" dragula="VAMPIRES">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</app-screen-container>

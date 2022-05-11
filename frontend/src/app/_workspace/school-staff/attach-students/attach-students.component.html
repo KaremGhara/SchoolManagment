@@ -1,0 +1,39 @@
+<app-screen-container [title]="'Attach Students '" [breadscrums]="breadscrums">
+  <!-- //'+selectedSchool.name+'`s -->
+  <div class="body">
+      <div class="alert alert-info">
+        Attach students to programs
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+          <div class="board" style="background-color: rgb(245, 248, 250); border: 0.1px solid #078fae45;">
+            <div *ngIf="schools!=null" class="cards" id="school">
+                <app-schoolslist [schools]="schools" (onSchoolSelected)="schoolSelected($event)"></app-schoolslist>
+            </div>
+          </div>
+        </div>        
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
+          <div class="board"  style="background-color: rgb(245, 248, 250); border: 0.1px solid #078fae45;">
+            <div *ngIf="classrooms!=null" class="cards" id="classroom">
+                <app-classroomlist [classrooms]="classrooms" (onClassRoomSelected)="classRoomSelected($event)"></app-classroomlist>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
+          <div class="board"  style="background-color: rgb(245, 248, 250); border: 0.1px solid #078fae45;">
+            <div *ngIf="students!=null" class="cards" id="students">
+                <app-studentslist [students]="students" (onStudentSelected)="StudentSelected($event)"></app-studentslist>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
+          <div class="board"  style="background-color: rgb(245, 248, 250); border: 0.1px solid #078fae45;">
+            <div *ngIf="programs!=null" class="cards" id="programs">
+                <app-programlist [studentId]="selectedStudent.id" [programs]="programs" [aviablePrograms]="aviablePrograms" (onRemove)="RmoveProgram($event)"></app-programlist>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</app-screen-container>

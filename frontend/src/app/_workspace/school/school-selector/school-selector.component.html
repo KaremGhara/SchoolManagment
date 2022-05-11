@@ -1,0 +1,7 @@
+<mat-form-field style=" width:250px" appearance="fill">
+    <mat-label>Select School</mat-label>            
+        <mat-select [(ngModel)]="selectedSchool" (selectionChange)="selectSchool()"  placeholder="Schools Name">
+            <mat-option *ngFor="let school of schools" [value]="school">{{school.name}}</mat-option>
+            
+        </mat-select>
+    </mat-form-field>
