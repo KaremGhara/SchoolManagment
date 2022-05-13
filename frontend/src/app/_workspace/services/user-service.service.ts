@@ -76,6 +76,19 @@ saveUsersFile(formData:FormData): Observable<UserModel>{
 getUserByRole(role:String):Observable<UserModel[]>{
   return this.http.get<UserModel[]>(APP_URL+"users/get-user-by-role?role="+role);
 }
+
+getuserSchoolStaffNotLink(): Observable<UserModel[]> {
+  return this.http.get<UserModel[]>(APP_URL+ "users/get-all-schoolStaff")
+}
+
+
+attachSchoolStaffToSchool(user:UserModel,schoolId:number):Observable<UserModel>{
+  return this.http.put<UserModel>(APP_URL+"users/attach-techar-to-school?schoolId="+schoolId,user);
+}
+
+getTecharsBySchool(schoolId:number):Observable<UserModel[]>{
+  return this.http.get<UserModel[]>(APP_URL+"users/get-user-by-school-id?schoolId="+schoolId);
+}
 }
 
 function user<T>(arg0: string, user: any): Observable<UserModel> {

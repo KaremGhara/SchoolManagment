@@ -58,6 +58,8 @@ public class User {
 	@NotBlank(message = "Can't Enter Empty Role!")
 	private String role;
 	private boolean status = true;
+	
+	private boolean attachTechar=false;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
 	@JsonIgnore

@@ -28,6 +28,8 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { AttachUsersComponent } from './attach-users/attach-users.component';
 import { DeleteComponent } from '../system-admin/all-users/dialogs/delete/delete.component';
 import { ImportComponent } from '../system-admin/all-users/dialogs/import/import.component';
+import { AttachSchoolStaffToSchoolComponent } from './attach-school-staff-to-school/attach-school-staff-to-school.component';
+import { SchoolStaffSelectorComponent } from './school-staff-selector/school-staff-selector.component';
 
 
 
@@ -40,7 +42,9 @@ import { ImportComponent } from '../system-admin/all-users/dialogs/import/import
     UpdateUserComponent,
     AttachUsersComponent,
     DeleteComponent,
-    ImportComponent
+    ImportComponent,
+    AttachSchoolStaffToSchoolComponent,
+    SchoolStaffSelectorComponent
     
   ],
   imports: [
