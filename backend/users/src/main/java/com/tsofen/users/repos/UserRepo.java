@@ -18,6 +18,8 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 	List<User> findAllByStatus(boolean status);
 
 	List<User> findByRoleEquals(String role);
+	
+	List<User> findByschool_idEquals(int schooId);
 
 
 }

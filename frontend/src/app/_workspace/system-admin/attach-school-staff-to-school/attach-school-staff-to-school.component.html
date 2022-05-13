@@ -1,0 +1,62 @@
+<app-screen-container [title]="'Attach School Staff to school'" [breadscrums]="breadscrums">
+   
+  <app-school-staff-selector style="margin-right: 43%;" (onSchoolSelected)="schoolWasSelected($event)"></app-school-staff-selector>
+  
+  <section class="content">
+      <div class="content-block">
+  
+          <div class="header" style="display: flex;
+          justify-content: center;">
+            <h1>School :{{school.name}}</h1>
+          </div>
+          <div class="body">
+  
+  
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="width:40%">
+                  <h4 style="margin-left:40%" >SchoolStaff</h4>                    
+                <div class="board" style="margin-left: 35%;width:250px;height:300px; background-color: rgb(245, 248, 250);border: 0.1px solid #078fae45">                
+                  <div class="cards" id="left"  >                                        
+                    <div class="container"  (click)="selectSchoolStaff(schoolStaff.id)" [value]=schoolStaff.id *ngFor="let schoolStaff of schoolStaff">                          
+                      <div class="drop-card" >                        
+                          <span class="table-img msg-user">  </span>                    
+                        <span class="cardtitle noselect"> {{schoolStaff.fname}}-{{schoolStaff.lname}}-{{schoolStaff.socialId}}</span></div>    
+                    </div>            
+                  </div> 
+                </div>
+              </div>
+  
+              
+          
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="width:10%"> 
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br> 
+                  <div  style="margin-left:30% ; width:1500px">  
+                    Attach: {{selectedSchoolStaffId.fname}}  
+                  </div>          
+                  <button class="btn-space"   style="margin-left:50% ;" mat-raised-button
+                        color="primary" (click)="attachSchoolStaffToSchool()">Attach</button>
+  
+              
+          </div>
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="width:40% ">
+                  <h4 style="margin-left:35%">School Staff Link</h4>
+                <div class="board" style="margin-left:30%;width:250px;height:300px;background-color: rgb(245, 248, 250);border: 0.1px solid #078fae45">
+                  <div class="cards" id="right" >
+                    <div class="container"  *ngFor="let schoolStaff of schoolStaffLinked">
+                      <div class="drop-card" >                        
+                          <span class="table-img msg-user">  </span>                    
+                        <span class="cardtitle noselect"> {{schoolStaff.fname}}-{{schoolStaff.lname}}-{{schoolStaff.socialId}}</span></div>    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </section>
+     
+ </app-screen-container>

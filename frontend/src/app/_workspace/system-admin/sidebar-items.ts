@@ -29,6 +29,21 @@ export const AdminRoute: RouteInfo[] =[
             role: [''],
             submenu: [],
       },
+      {
+        
+        
+        path: '/workspace/system-admin/attachSchoolStaffToSchool',
+        title: 'Attach Teacher',
+        moduleName: 'systemadmin',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        role: [''],
+        submenu: [],
+  },
    
 
     ],

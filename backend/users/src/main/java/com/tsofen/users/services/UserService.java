@@ -1,8 +1,10 @@
 package com.tsofen.users.services;
 
+import com.tsofen.users.beans.School;
 import com.tsofen.users.beans.User;
 import com.tsofen.users.beans.UserLoginData;
 import com.tsofen.users.helper.HelperCSV;
+import com.tsofen.users.repos.SchoolRepo;
 import com.tsofen.users.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 //extend WebSecurityConfigurerAdapter
@@ -20,6 +23,9 @@ public class UserService {
 	@Autowired
 	private UserRepo userRepo;
 	EntityManager entityManager;
+	
+	@Autowired
+	private SchoolRepo schoolRepo;
 
 
 	public List<User> getAllUsers() {
@@ -133,7 +139,36 @@ public class UserService {
 		return userRepo.findByRoleEquals(role);
 	}
 
+	
+	public List<User> getAllUsersSchoolStaff() {
+		List<User> users=userRepo.findAll();
+		List<User> usersSchoolStaff=new ArrayList<User>();
+		for(User u:users) {
+			if(u.getRole().equals("SchoolStaff")&& u.isAttachTechar()==false) {
+				usersSchoolStaff.add(u);
+			}
+		}
+		
+		return usersSchoolStaff;
+	}
+	
+	
+	@Transactional
+	public boolean attachUserToSchool(@RequestBody  User user,int schoolId) {
+		User attachUser = userRepo.findById(user.getId());
+		School school = schoolRepo.findById(schoolId);
+		user.setSchool(school);
+		user.setAttachTechar(true);
+			user.setId(attachUser.getId());
+			userRepo.save(user);
+			return true;
 
+	}
+	
+	
+	public List<User> getUserBySchoolId(int schoolId) {
+		return userRepo.findByschool_idEquals(schoolId);
+	}
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
 //		http.authorizeRequests()

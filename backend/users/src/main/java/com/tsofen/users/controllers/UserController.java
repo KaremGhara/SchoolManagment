@@ -28,6 +28,11 @@ public class UserController {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+    
+    @GetMapping("get-all-schoolStaff")
+    public List<User> getAllUsersSchooStaff() {
+        return userService.getAllUsersSchoolStaff();
+    }
 
     @GetMapping("get-user-by-status")
     public List<User> getUsersByStatus(@RequestParam boolean status) {
@@ -95,6 +100,22 @@ public class UserController {
     public User getUserByEmail(String email) {
         return userService.getUserByUserNameEmail(email);
     }
+    
+    @PutMapping("attach-techar-to-school")
+    public HttpStatus attachTeacharToSchool(@RequestBody User user,int schoolId) {
+        if (userService.attachUserToSchool(user,schoolId) == true) {
+            return HttpStatus.ACCEPTED;
+        } else {
+            return HttpStatus.BAD_REQUEST;
+        }
+    }
+    
+    @GetMapping("get-user-by-school-id")
+    public List<User> getUserBySchoolId(int schoolId) {
+        return userService.getUserBySchoolId(schoolId);
+    }
+    
+    
 
 
 //    @GetMapping("soft-delete")
