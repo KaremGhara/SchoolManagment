@@ -58,6 +58,12 @@ public class User {
 	@NotBlank(message = "Can't Enter Empty Role!")
 	private String role;
 	private boolean status = true;
+	
+	private boolean attachTechar=false;
+
+	@NotBlank(message = "Can't Enter Image url Empty!")
+
+	private String imageUrl;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
 	@JsonIgnore
