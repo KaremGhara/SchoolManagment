@@ -15,7 +15,7 @@ export const schoolStaffRoute: RouteInfo[] =[
         role: [UserRole[UserRole.SchoolStaff]],
         submenu: [
             {
-                path: '/workspace/school-staff/all/2/אלאחוה',
+                path: '/workspace/school-staff/all',
                 title: 'Show Students',
                 moduleName: 'schoolstaff',
                 iconType: '',

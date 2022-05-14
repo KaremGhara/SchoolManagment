@@ -17,7 +17,7 @@ export const MunicipalityManagerRoute: RouteInfo[] =[
       {
         
         
-            path: '/workspace/mincipality-manager/allSchools',
+        path: '/workspace/municipality-manager/allSchools',
             title: 'Show Schools',
             moduleName: 'micipalitymanager',
             iconType: '',

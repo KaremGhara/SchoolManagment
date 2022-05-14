@@ -8,7 +8,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { DeleteComponent } from './dialogs/delete/delete.component';
 import Swal from 'sweetalert2';
 
 
@@ -39,9 +38,6 @@ export class AllUsersComponent implements OnInit {
   ];
   dataSource: MatTableDataSource<UserModel>;
 
-   // constructor(private userService:UserServiceService,private router:Router) {
-    
-  //  }
   constructor(
     public dialog: MatDialog,
     public userService: UserServiceService,
@@ -49,38 +45,26 @@ export class AllUsersComponent implements OnInit {
     private snackBar: MatSnackBar
 
   ) { }
- /**  public id?:number;
- public fname?:string;
- public lname?:string;
- public socialId?:string;
-   public email?:string;
- public phone:string;
- public password?:string;
- public role?:string;
- public status?:boolean = true;*/
-
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   
   Users:UserModel[]=[];
   displayedColumns=['fname','lname','socialId','email','phone','password','role','status','action']
-  //dataSource:MatTableDataSource<UserModel>;
+
   selection = new SelectionModel<UserModel>(true, []);
   subs:any;
   
 
   ngOnInit(): void {
-    //original
-     this.getAllUsers();
-    //this.getAllDeletedUsers();
 
+     this.getAllUsers();
   }
 
   refresh() {
-      //original
+
      this.getAllUsers();
-    //this.getAllDeletedUsers();
+ 
   }
 
   addNew(){
@@ -106,16 +90,6 @@ export class AllUsersComponent implements OnInit {
       this.dataSource.sort=this.sort;
     })
   }
-  // private getAllDeletedUsers(){
-  //   this.userService.getAllUsersDeleted().subscribe(data => {
-  //     this.isTblLoading = false;
-  //     this.dataSource= new MatTableDataSource();
-  //     this.dataSource.paginator=this.paginator;
-  //     this.dataSource.sort=this.sort;
-  //   })
-  // }
- 
-  
   applyFilter($event:any){
     this.dataSource.filter=$event.target.value;
   }
@@ -139,18 +113,7 @@ export class AllUsersComponent implements OnInit {
       this.import=false;
       
   }
-  // Upload(){
-  //   const formData = new FormData();
-  //   formData.append('file',this.userFiles);
-  //   this.userService.saveUsersFile(formData).subscribe(data =>
-      
-  //     this.getAllDeletedUsers()
-      
-  //     )
-  //     this.import=false;
-      
-  // }
-
+  
  deleteUser(row) {
         
   Swal.fire({
@@ -175,30 +138,4 @@ export class AllUsersComponent implements OnInit {
 
 }
 
-// deleteUser(id:number){
-     
-//   this.dialog.open(DeleteComponent, {
-//    width: '500px',
-//    data:{
-//      message: 'Are you sure you want to delete this User?',
-//      id:id,
-//    }
- 
-//  }).afterClosed().subscribe(res =>{
-//    if(res){
-//      this.dataSource.data.filter(i=>i.id === id)
-//      console.log("User was successfully deleted");
-//      this.getAllDeletedUsers();
-//      this.showNotification(
-//        'snackbar-danger',
-//        'Delete Record Successfully...!!!',
-//        'bottom',
-//        'center'
-//      );
-//    }
-//  })
-
-  
- 
-// }
 }

@@ -1,6 +1,6 @@
 package com.tsofen.users.services;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,11 @@ import com.tsofen.users.beans.Program;
 import com.tsofen.users.beans.ProgramToSchoolProperties;
 import com.tsofen.users.beans.School;
 import com.tsofen.users.beans.Student;
+import com.tsofen.users.beans.User;
 import com.tsofen.users.repos.ProgramRepo;
 import com.tsofen.users.repos.ProgramToSchoolRepo;
 import com.tsofen.users.repos.SchoolRepo;
+import com.tsofen.users.repos.UserRepo;
 
 @Service
 public class SchoolService {
@@ -25,6 +27,9 @@ public class SchoolService {
 	
 	@Autowired
 	private ProgramToSchoolRepo programToSchoolRepo;
+	
+	@Autowired
+	private UserRepo userRepo;
 	
 	public boolean addSchool(School school) {
 		School exsitingSchool=schoolRepo.findByName(school.getName());
@@ -76,5 +81,13 @@ public class SchoolService {
 	public List<Classroom> getSchoolClasses(int schoolId){
 		//changer to function that get all classes of a school
 		return getById(schoolId).getClasses();
+	}
+	
+	
+	public School getSchoolByUserId(int userId) {
+		User user = userRepo.findById(userId);
+		School school=new School();
+		school=user.getSchool();
+		return school;
 	}
 }

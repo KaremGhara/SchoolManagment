@@ -66,5 +66,8 @@ public class SchoolController {
 		return schoolService.getLinked(schoolId,ProgId);
 	}
 	
-
+	@GetMapping("get-school-by-user-id")
+    public School getUserBySchoolId(int userId) {
+        return schoolService.getSchoolByUserId(userId);
+    }
 }

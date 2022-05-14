@@ -20,7 +20,7 @@
                     <div class="container"  (click)="selectSchoolStaff(schoolStaff.id)" [value]=schoolStaff.id *ngFor="let schoolStaff of schoolStaff">                          
                       <div class="drop-card" >                        
                           <span class="table-img msg-user">  </span>                    
-                        <span class="cardtitle noselect"> {{schoolStaff.fname}}-{{schoolStaff.lname}}-{{schoolStaff.socialId}}</span></div>    
+                        <span class="cardtitle noselect"> {{schoolStaff.firstName}}-{{schoolStaff.lastName}}-{{schoolStaff.socialId}}</span></div>    
                     </div>            
                   </div> 
                 </div>
@@ -49,7 +49,7 @@
                     <div class="container"  *ngFor="let schoolStaff of schoolStaffLinked">
                       <div class="drop-card" >                        
                           <span class="table-img msg-user">  </span>                    
-                        <span class="cardtitle noselect"> {{schoolStaff.fname}}-{{schoolStaff.lname}}-{{schoolStaff.socialId}}</span></div>    
+                        <span class="cardtitle noselect"> {{schoolStaff.firstName}}-{{schoolStaff.lastName}}-{{schoolStaff.socialId}}</span></div>    
                     </div>
                   </div>
                 </div>

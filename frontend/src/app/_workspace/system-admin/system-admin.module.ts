@@ -30,6 +30,7 @@ import { DeleteComponent } from '../system-admin/all-users/dialogs/delete/delete
 import { ImportComponent } from '../system-admin/all-users/dialogs/import/import.component';
 import { AttachSchoolStaffToSchoolComponent } from './attach-school-staff-to-school/attach-school-staff-to-school.component';
 import { SchoolStaffSelectorComponent } from './school-staff-selector/school-staff-selector.component';
+import { AdminDetailsComponent } from './admin-details/admin-details.component';
 
 
 
@@ -44,7 +45,8 @@ import { SchoolStaffSelectorComponent } from './school-staff-selector/school-sta
     DeleteComponent,
     ImportComponent,
     AttachSchoolStaffToSchoolComponent,
-    SchoolStaffSelectorComponent
+    SchoolStaffSelectorComponent,
+    AdminDetailsComponent
     
   ],
   imports: [

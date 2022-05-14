@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SchoolServiceService } from '../../services/school-service.service';
 import Swal from 'sweetalert2';
 import { ImportFileComponent } from './dialogs/import-file/import-file.component'
+import { UserServiceService } from '../../services/user-service.service';
+import { SchoolModel } from '../../models/school-model';
 
 @Component({
   selector: 'app-all-students',
@@ -19,8 +21,10 @@ import { ImportFileComponent } from './dialogs/import-file/import-file.component
   styleUrls: ['./all-students.component.sass']
 })
 export class AllStudentsComponent implements OnInit {
+  schoolId: number;
   id: number;
   schoolName: String;
+  school:SchoolModel=new SchoolModel();
   isTblLoading = true;
   displayedColumns=['firstName','lastName','socialId','classroom','action']
   dataSource:MatTableDataSource<StudentModel>;
@@ -40,17 +44,26 @@ export class AllStudentsComponent implements OnInit {
     private snackBar: MatSnackBar,
     private route:ActivatedRoute,
     private schoolService:SchoolServiceService
-
   ) { }
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   
 
   ngOnInit(): void {
-    this.id=this.route.snapshot.params['id'];
-    this.schoolName=this.route.snapshot.params['schoolName'];
+    const storedItems= JSON.parse(localStorage.getItem('currentUser'))
+    this.id=storedItems.id;
+
+    this.schoolService.getSchoolByUserId(this.id).subscribe(res => {
+      this.school=res;
+      this.schoolId=this.school.id;
+    this.schoolName=this.school.name;
+    this.studentsService.getStudentsBySchoolId(this.schoolId).subscribe(data => {
+      this.dataSource.data = data; 
+    })
+    })
+   
     this.dataSource= new MatTableDataSource();
-    this.getAllStudents();
+    
   }
 
   refresh() {
@@ -59,11 +72,11 @@ export class AllStudentsComponent implements OnInit {
 
   
   addNew(){
-    this.router.navigate(["/workspace/school-staff/add",this.id,this.schoolName])
+    this.router.navigate(["/workspace/school-staff/add",this.schoolId,this.schoolName])
   }
  
   updateStudent(idrow:number){
-    this.router.navigate(["/workspace/school-staff/update",this.id,idrow,this.schoolName])
+    this.router.navigate(["/workspace/school-staff/update",this.schoolId,idrow,this.schoolName])
   }
 
   
@@ -106,7 +119,7 @@ export class AllStudentsComponent implements OnInit {
 
   private getAllStudents(){
   
-    this.studentsService.getStudentsBySchoolId(this.id).subscribe(data => {
+    this.studentsService.getStudentsBySchoolId(this.school.id).subscribe(data => {
       this.isTblLoading = false;
       this.dataSource.data = data;
       this.dataSource.paginator=this.paginator;
@@ -125,7 +138,7 @@ export class AllStudentsComponent implements OnInit {
     data:{
       message: 'Import File',
       func:this.getAllStudents(),
-      id:this.id,
+      id:this.schoolId,
       loading:this.isTblLoading=false
     }
   }).afterClosed().subscribe(res =>{

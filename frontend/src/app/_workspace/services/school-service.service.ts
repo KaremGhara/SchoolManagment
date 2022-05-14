@@ -42,4 +42,8 @@ export class SchoolServiceService {
   getLinkById(schoolId:number, progId:number): Observable<ProgramToSchool>{
     return this.httpClient.get<ProgramToSchool>(this.serverUrl+"get-link?schoolId="+schoolId+"&&ProgId="+progId)
   }
+
+  getSchoolByUserId(id:number):Observable<SchoolModel>{
+    return this.httpClient.get<SchoolModel>(this.serverUrl+"get-school-by-user-id?userId="+id);
+  }
 }
