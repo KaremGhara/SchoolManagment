@@ -16,9 +16,11 @@ import {MunicipalityManagerRoute} from '../../_workspace/mincipality-manager/sid
 import {schoolRoute}  from '../../_workspace/school/sidebar-items';
 import {ROUTES} from './sidebar-items'
 import { Role } from 'src/app/core/models/role';
-import { AuthService } from 'src/app/core/service/auth.service';
+import { AuthService } from '../../_workspace/core/service/auth.service';
 import { UserServiceService } from 'src/app/_workspace/services/user-service.service';
 import { UserRole } from 'src/app/_workspace/common-utils/classes/user-role';
+import Swal from 'sweetalert2';
+import { UserModel } from 'src/app/_workspace/models/user-model';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -39,6 +41,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   headerHeight = 60;
   currentRoute: string;
   routerObj = null;
+  user:UserModel=new UserModel();
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -107,10 +110,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
   //ROUTES:any[]=[]
   ngOnInit() {
-    const storedItems=localStorage.getItem('currentUser')
-    console.log(storedItems);
+    // const storedItems=localStorage.getItem('currentUser')
+    const user=this.authService.currentUserValue;
+    this.userImg=user.userImg
     
-    alert(this.usersService.loggedInUser.firstName)
     ROUTES.length = 0;
     for(let link of schoolStaffRoute)
     {
@@ -188,6 +191,29 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.renderer.addClass(this.document.body, 'ls-closed');
     } else {
       this.renderer.removeClass(this.document.body, 'ls-closed');
+    }
+  }
+  async chanegFile(){
+    const { value: file } = await Swal.fire({
+      title: 'Select image',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'image/*',
+        'aria-label': 'Upload your profile picture'
+      }
+    })
+    
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+   
+        this.user.userImg= e.target.result as string;
+        console.log(this.user.userImg);
+        
+
+      
+      }
+      reader.readAsDataURL(file)
     }
   }
   mouseHover(e) {

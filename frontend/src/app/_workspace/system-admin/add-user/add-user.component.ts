@@ -19,7 +19,7 @@ export class AddUserComponent implements OnInit {
   [x: string]: any;
   userModel:UserModel=new UserModel();
   id:number;
-  stdForm: FormGroup;
+  userForm: FormGroup;
   breadscrums = [
     {
       title: 'Add user',
@@ -29,17 +29,42 @@ export class AddUserComponent implements OnInit {
   ];
 
   constructor(private fb: FormBuilder,private route:ActivatedRoute,private router:Router,private userservice:UserServiceService) {
-    this.stdForm = this.fb.group( {})
-    this.stdForm.addControl("fname",new FormControl(''))
-    this.stdForm.addControl("lname",new FormControl(''))
-    this.stdForm.addControl("socialId",new FormControl('', [Validators.required, Validators.minLength(9),Validators.maxLength(9)]))
-    this.stdForm.addControl("email",new FormControl('',[Validators.required, Validators.email]))
-    this.stdForm.addControl("phone",new FormControl('',[Validators.required, Validators.minLength(10),Validators.maxLength(10)]))
-    this.stdForm.addControl("password",new FormControl('',[Validators.required]))
-    this.stdForm.addControl("role",new FormControl('',[Validators.required]))
+    this.userForm = this.fb.group( {})
+    this.userForm.addControl("fname",new FormControl(''))
+    this.userForm.addControl("lname",new FormControl(''))
+    this.userForm.addControl("socialId",new FormControl('', [Validators.required, Validators.minLength(9),Validators.maxLength(9)]))
+    this.userForm.addControl("email",new FormControl('',[Validators.required, Validators.email]))
+    this.userForm.addControl("phone",new FormControl('',[Validators.required, Validators.minLength(10),Validators.maxLength(10)]))
+    this.userForm.addControl("password",new FormControl('',[Validators.required]))
+    this.userForm.addControl("role",new FormControl('',[Validators.required]))
+    this.userForm.addControl("userImage",new FormControl('',[Validators.required]))
+
 
   }
   
+  async onFileInput()
+  {
+    const { value: file } = await Swal.fire({
+      title: 'Select image',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'image/*',
+        'aria-label': 'Upload your profile picture'
+      }
+    })
+    
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+   
+        this.userModel.userImg= e.target.result as string;
+        
+
+      
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   // fname = new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-zA-Z ]+")]);
   // lname = new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-zA-Z ]+")]);

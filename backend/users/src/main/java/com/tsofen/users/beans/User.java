@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
+import javax.persistence.Lob;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
@@ -61,6 +61,8 @@ public class User {
 	
 	private boolean attachTechar=false;
 	
+	@Lob
+	@Column(name="user_image")
 	private String userImg;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")

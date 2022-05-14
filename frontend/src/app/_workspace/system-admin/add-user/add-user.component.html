@@ -1,43 +1,43 @@
 <app-screen-container [title]="'Create New System User'" [breadscrums]="breadscrums">
-    <form #formInfo="ngForm" class="form m-4"  [formGroup]="stdForm">
+    <form #formInfo="ngForm" class="form m-4"  [formGroup]="userForm">
         <div class="col-md-12 col-sm-12" >
             <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
                 <mat-label class="">First Name</mat-label>
-                <input matInput [(ngModel)]="userModel.firstName" [formControl]="stdForm.get('fname')">
+                <input matInput [(ngModel)]="userModel.firstName" [formControl]="userForm.get('fname')">
             </mat-form-field>
 
             <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
                 <mat-label class="">Last Name</mat-label>
-                <input matInput [(ngModel)]="userModel.lastName" [formControl]="stdForm.get('lname')">
+                <input matInput [(ngModel)]="userModel.lastName" [formControl]="userForm.get('lname')">
             </mat-form-field>                     
         </div>
 
         <div class="col-md-12 col-sm-12">
             <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
                 <mat-label class="">Social Identify</mat-label>
-                <input matInput [(ngModel)]="userModel.socialId" [formControl]="stdForm.get('socialId')">
+                <input matInput [(ngModel)]="userModel.socialId" [formControl]="userForm.get('socialId')">
             </mat-form-field>
 
             <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
             <mat-label class="">Email</mat-label>
-            <input matInput [(ngModel)]="userModel.email" [formControl]="stdForm.get('email')">
+            <input matInput [(ngModel)]="userModel.email" [formControl]="userForm.get('email')">
             
             </mat-form-field>
         </div>
         <div class="col-md-12 col-sm-12">
             <mat-form-field style="margin:10px; width:250px" appearance="fill">
                 <mat-label>Phone</mat-label>
-                    <input matInput [(ngModel)]="userModel.phone" [formControl]="stdForm.get('phone')">
+                    <input matInput [(ngModel)]="userModel.phone" [formControl]="userForm.get('phone')">
              </mat-form-field>
              <mat-form-field style="margin:10px; width:250px" appearance="fill">
                 <mat-label>Password</mat-label>
-                    <input matInput input type="password" [(ngModel)]="userModel.password" [formControl]="stdForm.get('password')" >
+                    <input matInput input type="password" [(ngModel)]="userModel.password" [formControl]="userForm.get('password')" >
              </mat-form-field>
             </div>
             <div class="col-md-12 col-sm-12">
              <mat-form-field style="margin:10px; width:250px" appearance="fill">
                 <mat-label>Role</mat-label>
-                    <mat-select name ="role" [(ngModel)]="userModel.role"[formControl]="stdForm.get('role')"                    > 
+                    <mat-select name ="role" [(ngModel)]="userModel.role"[formControl]="userForm.get('role')"                    > 
                     <mat-option value="Admin">Admin</mat-option>
                     <mat-option value="ProgramManager">ProgramManager</mat-option>
                     <mat-option value="MuncipalityManager">MuncipalityManager</mat-option>
@@ -51,9 +51,16 @@
                     </mat-option>
                   </mat-select> -->
                 </mat-form-field>
+
+                <div>
+              
+                    <mat-icon (click)="fileInput.click()">add_a_photo</mat-icon>
+                    <input #fileInput formControlName="userImage" type="button" [(ngModel)]="userModel.userImg" (click)="onFileInput()"  style="display:none;" />
+                </div>
+
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-            <button class="btn-space"  [disabled]="!stdForm.valid " mat-raised-button
+            <button class="btn-space"  [disabled]="!userForm.valid " mat-raised-button
               color="primary" (click)="addUser()">Save</button>
             <button type="button" mat-button (click)="backToList()">Cancel</button>
           </div>                 
