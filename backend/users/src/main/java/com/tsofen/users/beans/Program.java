@@ -54,7 +54,7 @@ public class Program {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"programs", "hibernateLazyInitializer"})
-   @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User programmanager;
 	
 

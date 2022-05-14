@@ -7,8 +7,8 @@ static id: any;
 
 constructor(
     public id?:number,
-	public fname?:string,
-	public lname?:string,
+	public firstName?:string,
+	public lastName?:string,
 	public socialId?:string,
     public email?:string,
 	public phone?:string,
@@ -17,7 +17,7 @@ constructor(
 	public status:boolean = true,
 	public school?:SchoolModel,
 	public  attach?: boolean,
-	public img?:string,
+	public userImg?:string,
 
 )
 {}

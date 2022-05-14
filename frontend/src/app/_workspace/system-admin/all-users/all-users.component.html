@@ -53,13 +53,12 @@
          <ng-container matColumnDef="fname">
            <mat-header-cell *matHeaderCellDef mat-sort-header>First Name
            </mat-header-cell>
-           <mat-cell *matCellDef="let row">{{row.fname}}</mat-cell>
+           <mat-cell *matCellDef="let row">{{row.firstName}}</mat-cell>
          </ng-container>
          <ng-container matColumnDef="lname">
            <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name
            </mat-header-cell>
-           <mat-cell *matCellDef="let row"> {{row.lname}}
-           </mat-cell>
+           <mat-cell *matCellDef="let row"> {{row.lastName}}</mat-cell>
          </ng-container>
          <ng-container matColumnDef="socialId" >
            <mat-header-cell *matHeaderCellDef mat-sort-header>Social Id

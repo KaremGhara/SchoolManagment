@@ -57,8 +57,8 @@ public class UsersApplication implements CommandLineRunner {
 			
 			User user=new User();
 			user.setEmail("prog_mngr@gmail.com");
-			user.setFname("Lana");
-			user.setLname("Shehyosef");
+			user.setFirstName("Lana");
+			user.setLastName("Shehyosef");
 			user.setPassword("123456");
 			user.setPhone("0544285737");
 			user.setRole("ProgramManager");
@@ -68,8 +68,8 @@ public class UsersApplication implements CommandLineRunner {
 			
 			User user1=new User();
 			user1.setEmail("man_mngr@gmail.com");
-			user1.setFname("Mahamod");
-			user1.setLname("Hamed");
+			user1.setFirstName("Mahamod");
+			user1.setLastName("Hamed");
 			user1.setPassword("123456");
 			user1.setPhone("0547807860");
 			user1.setRole("MuncipalityManager");
@@ -80,8 +80,8 @@ public class UsersApplication implements CommandLineRunner {
 			
 			User user2=new User();
 			user2.setEmail("admin@gmail.com");
-			user2.setFname("Bilal");
-			user2.setLname("Mahamid");
+			user2.setFirstName("Bilal");
+			user2.setLastName("Mahamid");
 			user2.setPassword("123456");
 			user2.setPhone("0526610004");
 			user2.setRole("Admin");
@@ -92,8 +92,8 @@ public class UsersApplication implements CommandLineRunner {
 			
 			User user3=new User();
 			user3.setEmail("schl_stf@gmail.com");
-			user3.setFname("Karem");
-			user3.setLname("Grah");
+			user3.setFirstName("Karem");
+			user3.setLastName("Grah");
 			user3.setPassword("123456");
 			user3.setPhone("0542842721");
 			user3.setRole("SchoolStaff");

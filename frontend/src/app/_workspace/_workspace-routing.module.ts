@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Page404Component } from '../authentication/page404/page404.component';
+import { AuthLayoutComponent } from '../layout/app-layout/auth-layout/auth-layout.component';
 
 const routes: Routes = [
  
@@ -9,7 +11,7 @@ const routes: Routes = [
       import('./school-staff/school-staff.module').then((m) => m.SchoolStaffModule),
   },
   {
-    path: 'mincipality-manager',
+    path: 'municipality-manager',
     loadChildren: () =>
       import('./mincipality-manager/mincipality-manager.module').then((m) => m.MincipalityManagerModule),
   },
@@ -26,7 +28,16 @@ const routes: Routes = [
     path: 'school',
     loadChildren: () =>
       import('./school/school.module').then((m) => m.SchoolModule),
-  }
+  },
+  {
+    path: 'authentication',
+    component: AuthLayoutComponent,
+    loadChildren: () =>
+      import('./authentication/authentication.module').then(
+        (m) => m.AuthenticationModule
+      ),
+  },
+  { path: '**', component: Page404Component },
  
 
 ];

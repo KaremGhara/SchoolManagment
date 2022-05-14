@@ -63,70 +63,71 @@ export class SigninComponent
     if (this.authForm.invalid) {
       this.error = 'Username and Password not valid !';
       return;
-    } else {
+    // } else {
 
-	   let userDetails : UserModel = new UserModel();
-     userDetails.email = this.f.username.value;
-     userDetails.password = this.f.password.value;
-     this.usersService.loginUser(userDetails).subscribe((loggedInUser:UserModel)=>{
-       if(loggedInUser==null)
-       {
-          this.error = 'Invalid Login';        
-            this.submitted = false;
-            this.loading = false;
-       }
-       else
-       {
+	  // //  let userDetails : UserModel = new UserModel();
+    // //  userDetails.email = this.f.username.value;
+    // //  userDetails.password = this.f.password.value;
+    //  this.usersService.loginUser(userDetails).subscribe((loggedInUser:UserModel)=>{
+    //    if(loggedInUser==null)
+    //    {
+    //       this.error = 'Invalid Login';        
+    //         this.submitted = false;
+    //         this.loading = false;
+    //    }
+    //    else
+    //    {
 
-          this.usersService.loggedInUser = loggedInUser;
-          //this.router.navigate(["workspace/mincipality-manager/allSchools"]);
-         // this.router.navigate([this.commonUtilsService.getDefaultRoutByRole(loggedInUser.role)]);
-         if(loggedInUser.role==this.userRole.Admin){
-          this.router.navigate(["workspace/system-admin/all"]);
-        }
-       else{
-        this.router.navigate(["workspace/program-manager/all"]);
+    //       this.usersService.loggedInUser = loggedInUser;
+    //       //this.router.navigate(["workspace/mincipality-manager/allSchools"]);
+    //      // this.router.navigate([this.commonUtilsService.getDefaultRoutByRole(loggedInUser.role)]);
+    //      if(loggedInUser.role==this.userRole.Admin){
+    //       this.router.navigate(["workspace/system-admin/all"]);
+    //     }
+    //    else{
+    //     this.router.navigate(["workspace/program-manager/all"]);
 
-       }
+    //    }
         
-          this.loading = false;
-       }
+    //       this.loading = false;
+    //    }
        
-     },
-     (error) => {
-       this.error = error;
-       this.submitted = false;
-       this.loading = false;
-     }
-     );
-     /* this.subs.sink = this.authService
-        .login(this.f.username.value, this.f.password.value)
-        .subscribe(
-          (res) => {
-            if (res) {
-              setTimeout(() => {
-                const role = this.authService.currentUserValue.role;
-                if (role === Role.All || role === Role.Admin) {
-                  this.router.navigate(['/admin/dashboard/main']);
-                } else if (role === Role.Teacher) {
-                  this.router.navigate(['/teacher/dashboard']);
-                } else if (role === Role.Student) {
-                  this.router.navigate(['/student/dashboard']);
-                } else {
-                  this.router.navigate(['/authentication/signin']);
-                }
-                this.loading = false;
-              }, 1000);
-            } else {
-              this.error = 'Invalid Login';
-            }
-          },
-          (error) => {
-            this.error = error;
-            this.submitted = false;
-            this.loading = false;
-          }
-        );*/
-    }
+    //  },
+    //  (error) => {
+    //    this.error = error;
+    //    this.submitted = false;
+    //    this.loading = false;
+    //  }
+    //  );
+    //  /* this.subs.sink = this.authService
+    //     .login(this.f.username.value, this.f.password.value)
+    //     .subscribe(
+    //       (res) => {
+    //         if (res) {
+    //           setTimeout(() => {
+    //             const role = this.authService.currentUserValue.role;
+    //             if (role === Role.All || role === Role.Admin) {
+    //               this.router.navigate(['/admin/dashboard/main']);
+    //             } else if (role === Role.Teacher) {
+    //               this.router.navigate(['/teacher/dashboard']);
+    //             } else if (role === Role.Student) {
+    //               this.router.navigate(['/student/dashboard']);
+    //             } else {
+    //               this.router.navigate(['/authentication/signin']);
+    //             }
+    //             this.loading = false;
+    //           }, 1000);
+    //         } else {
+    //           this.error = 'Invalid Login';
+    //         }
+    //       },
+    //       (error) => {
+    //         this.error = error;
+    //         this.submitted = false;
+    //         this.loading = false;
+    //       }
+    //     );*/
+    // }
   }
+}
 }

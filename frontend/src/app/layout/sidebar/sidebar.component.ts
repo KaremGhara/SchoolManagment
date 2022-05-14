@@ -107,6 +107,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
   //ROUTES:any[]=[]
   ngOnInit() {
+    const storedItems=localStorage.getItem('currentUser')
+    console.log(storedItems);
+    
+    alert(this.usersService.loggedInUser.firstName)
     ROUTES.length = 0;
     for(let link of schoolStaffRoute)
     {
@@ -134,9 +138,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     if (this.usersService.loggedInUser) {
       const userRole = this.usersService.loggedInUser.role;
       this.userFullName =
-        this.usersService.loggedInUser.fname +
+        this.usersService.loggedInUser.firstName +
         ' ' +
-        this.usersService.loggedInUser.lname;
+        this.usersService.loggedInUser.lastName;
       
         this.sidebarItems = ROUTES.filter(
           (x) => x.role.indexOf(userRole) !== -1 

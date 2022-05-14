@@ -132,10 +132,10 @@ public  List<Student> convertExcelToStudent(InputStream inputStram){
 					Cell cell = cells.next();
 					switch (cid) {
 						case 0:
-							user.setFname(cell.getStringCellValue());
+							user.setFirstName(cell.getStringCellValue());
 							break;
 						case 1:
-							user.setLname(cell.getStringCellValue());
+							user.setLastName(cell.getStringCellValue());
 							break;
 						case 2:
 							user.setSocialId(cell.getStringCellValue());

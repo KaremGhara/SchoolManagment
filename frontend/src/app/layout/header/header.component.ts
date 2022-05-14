@@ -8,7 +8,7 @@ import {
   Renderer2,
   AfterViewInit,
 } from '@angular/core';
-import { AuthService } from 'src/app/core/service/auth.service';
+import { AuthService } from '../../_workspace/core/service/auth.service';
 import { Router } from '@angular/router';
 import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
 import { Role } from 'src/app/core/models/role';
@@ -16,6 +16,8 @@ import { LanguageService } from 'src/app/core/service/language.service';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import { UserServiceService } from 'src/app/_workspace/services/user-service.service';
 import { CommonService } from 'src/app/_workspace/common-utils/classes/common.service';
+import {UserModel} from '../../_workspace/models/user-model'
+import { UserRole } from 'src/app/_workspace/common-utils/classes/user-role';
 const document: any = window.document;
 
 @Component({
@@ -36,6 +38,10 @@ export class HeaderComponent
   langStoreValue: string;
   defaultFlag: string;
   isOpenSidebar: boolean;
+  public user:UserModel
+  role=UserRole;
+
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -107,16 +113,31 @@ export class HeaderComponent
     },
   ];
   ngOnInit() {
+    this.user=this.authService.currentUserValue;
     this.config = this.configService.configData;
+    
+    const stortedItems=JSON.parse(localStorage.getItem('currentUser'))
+    console.log(stortedItems);
+    
+    this.userImg = this.authService.currentUserValue.userImg;
+    // if (role === this.userRole.Admin) {
+    //   this.router.navigate(['workspace/system-admin/all']);
+    // } else if (role === this.userRole.ProgramManager) {
+    //   this.router.navigate(["workspace/program-manager/all"])
+    // } else if (role === this.userRole.SchoolStaff) {
+    //   this.router.navigate(["workspace/school-staff/attach"]);
+    // }
+    // else if (role === this.userRole.MuncipalityManager) {
+    //   this.router.navigate(["workspace/municipality-manager/allSchools"]);
+    // } else {
+    //   this.router.navigate(['/authentication/signin']);
+    // }
 
-    const userRole = this.authService.currentUserValue.role;
-    this.userImg = this.authService.currentUserValue.img;
-
-    if (userRole === Role.Admin) {
+    if (stortedItems.role== this.role.Admin) {
       this.homePage = 'workspace/school-staff/all-students';
-    } else if (userRole === Role.Teacher) {
+    } else if (stortedItems.role==this.role.SchoolStaff) {
       this.homePage = 'workspace/school-staff/all-students';
-    } else if (userRole === Role.Student) {
+    } else if (stortedItems.role== this.role.MuncipalityManager) {
       this.homePage = 'student/dashboard';
     } else {
       this.homePage = 'admin/dashboard/main';

@@ -19,7 +19,7 @@ public interface ProgramRepo extends JpaRepository<Program, Integer>{
 	public Program findByIdEquals(int Id);
 	public List<Program> findAll();
 	
-	@Query(value = "select * from tsofen_project.programs join tsofen_project.program_to_school_properties using (program_id) where school_id=?1", nativeQuery = true)
+	@Query(value = "select * from school_managment.programs join school_managment.program_to_school_properties using (program_id) where school_id=?1", nativeQuery = true)
 	public List<Program> getProgramsBySchool( int schoolId);
 	
 

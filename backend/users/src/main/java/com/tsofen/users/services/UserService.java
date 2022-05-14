@@ -37,7 +37,7 @@ public class UserService {
 		if (existUser.isPresent())
 		{
 			throw new IllegalStateException("User #" + existUser.get().getId() + "-" +
-					existUser.get().getFname() + " " + existUser.get().getLname() +" Already Exists!");
+					existUser.get().getFirstName() + " " + existUser.get().getLastName() +" Already Exists!");
 		}
 		else {
 //			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

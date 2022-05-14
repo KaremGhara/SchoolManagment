@@ -38,10 +38,10 @@ public class User {
 	private int id;
 	@Column(name = "first_name")
 	@NotBlank(message = "Can't Enter Empty First Name!")
-	private String fname;
+	private String firstName;
 	@Column(name = "last_name")
 	@NotBlank(message = "Can't Enter Empty Family Name!")
-	private String lname;
+	private String lastName;
 	@Size(min = 9, max = 9)
 	@NotBlank(message = "Can't Enter Empty Social ID Number!")
 	private String socialId;
@@ -60,10 +60,8 @@ public class User {
 	private boolean status = true;
 	
 	private boolean attachTechar=false;
-
-	@NotBlank(message = "Can't Enter Image url Empty!")
-
-	private String imageUrl;
+	
+	private String userImg;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
 	@JsonIgnore
@@ -84,3 +82,9 @@ public class User {
 	@JsonBackReference
 	private School school;
 }
+
+
+
+
+
+
