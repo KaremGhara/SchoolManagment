@@ -28,6 +28,8 @@ export class AllSchoolComponent implements OnInit {
     ];
 
 
+    userId:number;
+    schoolU:SchoolModel =new SchoolModel;
     schoolsProgram: ProgramModel[];
     isTblLoading = false;
     public studentFiles: any = File;
@@ -49,7 +51,14 @@ export class AllSchoolComponent implements OnInit {
 
 
     ngOnInit(): void {
+        const storedItems= JSON.parse(localStorage.getItem('currentUser'))
+        this.userId=storedItems.id;
 
+        this.schoolService.getSchoolByUserId(this.userId).subscribe(res => {
+            this.schoolU=res;
+            this.getProgramsToSchool()
+            
+          })
     }
 
 
@@ -66,19 +75,29 @@ export class AllSchoolComponent implements OnInit {
 
     }
 
-    public schoolWasSelected(school: SchoolModel) {
-
+    getProgramsToSchool(){
         this.isTblLoading = true;
-        this.programService.getProgramBySchoolId(school.id).subscribe(programs => {
+        this.programService.getProgramBySchoolId(this.schoolU.id).subscribe(programs => {
             
             this.isTblLoading = false;
             this.dataSource = new MatTableDataSource(programs);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         })
-
-
     }
+    // public schoolWasSelected(school: SchoolModel) {
+
+    //     this.isTblLoading = true;
+    //     this.programService.getProgramBySchoolId(school.id).subscribe(programs => {
+            
+    //         this.isTblLoading = false;
+    //         this.dataSource = new MatTableDataSource(programs);
+    //         this.dataSource.paginator = this.paginator;
+    //         this.dataSource.sort = this.sort;
+    //     })
+
+
+    // }
 
 
     editlink(row: ProgramToSchool) {
@@ -100,12 +119,12 @@ export class AllSchoolComponent implements OnInit {
             if (result.value) {
                 this.programService.deleteProgram(row.id).subscribe(res => {
                     if (res) {
-                        this.schoolWasSelected;
+                        this.getProgramsToSchool();
                         Swal.fire('Deleted!', row.name + ' has been deleted.', 'success');
                     }
                 })
             }
-            this.schoolWasSelected;
+            this.getProgramsToSchool();
         });
 
     }

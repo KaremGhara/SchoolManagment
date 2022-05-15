@@ -41,6 +41,7 @@ export class ProgramsToSchoolComponent  implements OnInit {
     isTblLoading = true;
     public programFiles: any=File;
     import=false;
+    userId:number;
 
   dataSource:MatTableDataSource<SchoolModel>;
   selection = new SelectionModel<SchoolModel>(true, []);
@@ -60,19 +61,28 @@ export class ProgramsToSchoolComponent  implements OnInit {
   program2school:ProgramToSchool = new ProgramToSchool;
   programs:ProgramModel[] ;
   school:SchoolModel =new SchoolModel;
+  schoolU:SchoolModel =new SchoolModel;
   programs_ids:number[] = [];
   programsNotLinked: ProgramModel[];
 selectedProgId:ProgramModel= new ProgramModel;
   ngOnInit(): void {
-    
+    const storedItems= JSON.parse(localStorage.getItem('currentUser'))
+    this.userId=storedItems.id;
+
+    this.schoolService.getSchoolByUserId(this.userId).subscribe(res => {
+      this.schoolU=res;
+      this.findBySchool();
+      this.findNotLinked();
+    })
     }
-    public findBySchool(id:number){
-      this.programService.getProgramBySchoolId(id).subscribe(data => {    
+
+    public findBySchool(){
+      this.programService.getProgramBySchoolId(this.schoolU.id).subscribe(data => {    
         this.programs=data
       })
     }
-    public findNotLinked(id:number){
-      this.programService.findNotLinkedPrograms(id).subscribe(data => {    
+    public findNotLinked(){
+      this.programService.findNotLinkedPrograms(this.schoolU.id).subscribe(data => {    
         this.programsNotLinked=data
       })
     }
@@ -102,15 +112,14 @@ selectedProgId:ProgramModel= new ProgramModel;
 
     public schoolWasSelected(school : SchoolModel)
     {
-      // alert(school.name);
-     this.findBySchool(school.id);
-     this.findNotLinked(school.id);
+     this.findBySchool();
+     this.findNotLinked();
      this.school=school
     }
   
     
     attachProgToSchool(){
-      this.router.navigate(['/workspace/school/link/', this.selectedProgId.id,this.school.id])
+      this.router.navigate(['/workspace/school/link/', this.selectedProgId.id,this.schoolU.id])
     }
    
 

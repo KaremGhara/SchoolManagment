@@ -1,6 +1,6 @@
 <app-screen-container [title]="'all school'" [breadscrums]="breadscrums">
 
-    <app-school-selector (onSchoolSelected)="schoolWasSelected($event)"></app-school-selector>
+    <!-- <app-school-selector (onSchoolSelected)="schoolWasSelected($event)"></app-school-selector> -->
 
     <div class="mat-elevation-z8">
         <div class="materialTableHeader">
@@ -9,7 +9,7 @@
                     <ul class="header-buttons-left ml-0">
                         <li class="dropdown">
                             <h2>
-                                <strong>schools</strong>
+                                <strong>school :{{schoolU.name}}</strong>
                             </h2>
                         </li>
                         <li class="dropdown m-l-20">
