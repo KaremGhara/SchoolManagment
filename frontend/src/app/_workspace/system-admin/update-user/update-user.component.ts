@@ -2,17 +2,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { iif } from 'rxjs';
 import { AlertsComponent } from 'src/app/ui/alerts/alerts.component';
+import Swal from 'sweetalert2';
 import {UserModel} from '../../models/user-model'
 import { UserServiceService } from '../../services/user-service.service';
 
-
-// @NgModule({
-//   imports: [
-//     MatFormFieldModule,
-//     MatInputModule
-//   ]
-// })
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
@@ -36,17 +31,6 @@ export class UpdateUserComponent implements OnInit {
     });
   }
  
-  // constructor(private fb: FormBuilder,private route:ActivatedRoute,private router:Router,private usersService:UserServiceService) {
-  //   this.stdForm = this.fb.group({});
-  //   this.stdForm.addControl("fname",new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-zA-Z ]+")]));
-  //   this.stdForm.addControl("lname",new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-zA-Z ]+")]));
-  //   this.stdForm.addControl("socialId",new FormControl('', [Validators.required, Validators.minLength(9),Validators.maxLength(9)]));
-  //   this.stdForm.addControl("email",new FormControl('', [Validators.required, Validators.email]));
-  //   this.stdForm.addControl("phone",new FormControl('', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]));
-  //   this.stdForm.addControl("password",new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(6),Validators.maxLength(9)]));
-  //   this.stdForm.addControl("role",new FormControl('', [Validators.required,Validators.required]));
-  //   this.stdForm.addControl("status",new FormControl ('', [Validators.required]));
-  // }
 
   
   fname = new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-zA-Z ]+")]);
@@ -67,6 +51,31 @@ export class UpdateUserComponent implements OnInit {
       this.userModel=data;
    
     })
+  }
+
+  async onFileInput()
+  {
+    const { value: file } = await Swal.fire({
+      title: 'Select image',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'image/*',
+        'aria-label': 'Upload your profile picture'
+      }
+    })
+    
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+   
+        this.userModel.userImg= e.target.result as string;
+        console.log(this.userModel.userImg);
+        
+
+      
+      }
+      reader.readAsDataURL(file)
+    }
   }
   getFnameErrorMessage(){
     if (this.fname.hasError('required')) {
@@ -116,21 +125,6 @@ export class UpdateUserComponent implements OnInit {
     }
   }
 
-  // getPasswordErrorMessage() {
-  //   if (this.password.hasError('required')) {
-  //     return 'You must enter a value';
-  //   }
-  //   if(this.password.hasError('pattern')){
-  //     return 'First Name is invalid'
-  //   }
-  //   if(this.phone.hasError('maxLength')){
-  //     return 'Social id must be 10 digits long';
-  //   }
-  //   if(this.phone.hasError('minLength')){
-  //     return 'Social id must be 6 digits long';
-  //   }
-  // }
-
   getRoleErrorMessage() {
     if (this.role.hasError('required')) {
       return 'You must enter a value';
@@ -151,7 +145,14 @@ export class UpdateUserComponent implements OnInit {
     this.userservice.updateSystemUser(this.userModel).subscribe(
       res=>{
         if(res){
-          this.router.navigate(["/workspace/system-admin/all"])
+          if(this.userModel.role=='Admin')
+          {
+            this.router.navigate(["/workspace/system-admin/adminDerails"])
+          }
+          else{
+            this.router.navigate(["/workspace/system-admin/all"])
+          }
+          
         }
         else{
           alert(" User Can not be updated ")
@@ -160,12 +161,14 @@ export class UpdateUserComponent implements OnInit {
     )
   }
   backToList(){
-    this.router.navigate(["/workspace/system-admin/all"])
+    if(this.userModel.role=='Admin'){
+      this.router.navigate(["/workspace/system-admin/adminDerails"])
+    }
+    else{
+      this.router.navigate(["/workspace/system-admin/all"])
+
+    }
   }
-  // private options: string[] = ["Teacher", "Manager", "parent"];
-  //   //selectedQuantity = "10";
 
-
-  
 }
 

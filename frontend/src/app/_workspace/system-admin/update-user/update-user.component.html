@@ -33,11 +33,7 @@
                     <input matInput [(ngModel)]="userModel.phone" [formControl]="phone" required>
                     <mat-error *ngIf="phone.invalid">{{getPhoneErrorMessage()}}</mat-error>
              </mat-form-field>
-             <!-- <mat-form-field style="margin:10px; width:250px" appearance="fill">
-                <mat-label>Password</mat-label>
-                    <input matInput [(ngModel)]="userModel.password" [formControl]="password" required>
-                    <mat-error *ngIf="email.invalid">{{getPasswordErrorMessage()}}</mat-error>
-             </mat-form-field> -->
+        
              <mat-form-field style="margin:10px; width:250px" appearance="fill">
                 <mat-label>Role</mat-label>
                     <mat-select name ="role" [(ngModel)]="userModel.role"[formControl]="role" required> 
@@ -45,18 +41,16 @@
                         <mat-option value="ProgramManager">ProgramManager</mat-option>
                         <mat-option value="MuncipalityManager">MuncipalityManager</mat-option>
                         <mat-option value="SchoolStaff">SchoolStaff</mat-option>
-                    <!-- <mat-error *ngIf="role.invalid">{{getRoleErrorMessage()}}</mat-error> -->
                     </mat-select>           
-                
-                    <!-- <mat-option *ngFor="let role of role" [value]="role.value">
-                      {{Role.viewValue}}
-                    </mat-option>
-                  </mat-select>    <button type="submit" (click)="updateProfile()" class="btn btn-primary btn-block"> Update </button>
--->
                 </mat-form-field>
         </div>
+
+        <div class="col-md-12 col-sm-12">
+
+            <mat-icon (click)="fileInput.click()">add_a_photo</mat-icon>
+            <input #fileInput formControlName="userImage" type="button" [(ngModel)]="userModel.userImg" (click)="onFileInput()"  style="display:none;" />
+        </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-            <!-- <button class="btn-space" (click)="updateUser()" [disabled]="!stdForm.valid " mat-raised-button -->
             <button class="btn-space"  mat-raised-button
               color="primary"(click)="updateUser()">Submit</button>
             <button type="button" mat-button (click)="backToList()">Cancel</button>

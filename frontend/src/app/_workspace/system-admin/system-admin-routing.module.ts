@@ -20,10 +20,6 @@ path:"update/:id",
 component:UpdateUserComponent
 },
 {
-path:"update",
-component:UpdateUserComponent
-},
-{
   path:"attachSchoolStaffToSchool",
   component:AttachSchoolStaffToSchoolComponent
   },

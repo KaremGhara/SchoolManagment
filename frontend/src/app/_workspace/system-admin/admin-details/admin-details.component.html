@@ -1,4 +1,21 @@
 <app-screen-container [title]="'My profile'" [breadscrums]="breadscrums">
 
-
+    <mat-card class="example-card">
+        <mat-card-title-group>
+          <mat-card-title>{{adminDetails.firstName}} {{adminDetails.lastName}}</mat-card-title>
+          <mat-card-subtitle>{{adminDetails.email}}</mat-card-subtitle>
+          <img mat-card-sm-image src={{adminDetails.userImg}} appearance="fill"alt="Photo of a Shiba Inu">
+        </mat-card-title-group>
+        <mat-card-content>
+          <p>Role: {{adminDetails.role}}</p>
+          <p>Phone: {{adminDetails.phone}}</p>
+          <p>Social Id: {{adminDetails.socialId}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="updateProfileAdmin()"><mat-icon aria-label="Edit">edit
+          </mat-icon></button>
+        </mat-card-actions>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
 </app-screen-container>

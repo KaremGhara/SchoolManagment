@@ -134,13 +134,13 @@ export class HeaderComponent
     // }
 
     if (stortedItems.role== this.role.Admin) {
-      this.homePage = 'workspace/school-staff/all-students';
+      this.homePage = 'workspace/system-admin/adminDerails';
     } else if (stortedItems.role==this.role.SchoolStaff) {
-      this.homePage = 'workspace/school-staff/all-students';
+      this.homePage = 'workspace/school-staff/schoolStaffDerails';
     } else if (stortedItems.role== this.role.MuncipalityManager) {
-      this.homePage = 'student/dashboard';
-    } else {
-      this.homePage = 'admin/dashboard/main';
+      this.homePage = 'workspace/municipality-manager/muncipalityManagerDerails';
+    } else if (stortedItems.role== this.role.ProgramManager){
+      this.homePage = 'workspace/program-manager/programManagerDerails';
     }
 
     this.langStoreValue = localStorage.getItem('lang');
@@ -260,5 +260,18 @@ export class HeaderComponent
         this.router.navigate(['/authentication/signin']);
       }
     });
+  }
+
+  Account(){
+    const stortedItems=JSON.parse(localStorage.getItem('currentUser'))
+    if (stortedItems.role== this.role.Admin) {
+      this.router.navigate(['workspace/system-admin/adminDerails']);
+    } else if (stortedItems.role==this.role.SchoolStaff) {
+      this.router.navigate(['workspace/school-staff/schoolStaffDerails']);
+    } else if (stortedItems.role== this.role.MuncipalityManager) {
+      this.router.navigate(['workspace/municipality-manager/muncipalityManagerDerails']);
+    } else if (stortedItems.role== this.role.ProgramManager){
+      this.router.navigate(['workspace/program-manager/programManagerDerails']);
+    }
   }
 }

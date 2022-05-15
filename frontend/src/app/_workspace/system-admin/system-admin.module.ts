@@ -31,6 +31,7 @@ import { ImportComponent } from '../system-admin/all-users/dialogs/import/import
 import { AttachSchoolStaffToSchoolComponent } from './attach-school-staff-to-school/attach-school-staff-to-school.component';
 import { SchoolStaffSelectorComponent } from './school-staff-selector/school-staff-selector.component';
 import { AdminDetailsComponent } from './admin-details/admin-details.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -97,6 +98,7 @@ import { AdminDetailsComponent } from './admin-details/admin-details.component';
     MatProgressSpinnerModule,
     ComponentsModule,
     SystemAdminRoutingModule,
+    MatCardModule
     
   ]
 })

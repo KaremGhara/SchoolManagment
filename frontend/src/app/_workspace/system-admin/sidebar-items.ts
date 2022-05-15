@@ -9,43 +9,37 @@ export const AdminRoute: RouteInfo[] =[
     iconType: 'material-icons-two-tone',
     icon: 'school',
     class: 'menu-toggle',
+    groupTitle: true,
+    badge: '',
+    badgeClass: '',
+    role: [UserRole[UserRole.Admin]],
+    submenu: [],
+  },
+  {
+    path: '/workspace/system-admin/all',
+    title: 'Show Users',
+    moduleName: 'systemadmin',
+    iconType: 'material-icons-two-tone',
+    icon: 'school',
+    class: '',
     groupTitle: false,
     badge: '',
     badgeClass: '',
     role: [UserRole[UserRole.Admin]],
-    submenu: [
-      {
-        
-        
-            path: '/workspace/system-admin/all',
-            title: 'Show Users',
-            moduleName: 'systemadmin',
-            iconType: '',
-            icon: '',
-            class: 'ml-menu',
-            groupTitle: false,
-            badge: '',
-            badgeClass: '',
-            role: [''],
-            submenu: [],
-      },
-      {
-        
-        
-        path: '/workspace/system-admin/attachSchoolStaffToSchool',
-        title: 'Attach Teacher',
-        moduleName: 'systemadmin',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
+    submenu: [],
   },
-   
-
-    ],
+  {
+    path: '/workspace/system-admin/attachSchoolStaffToSchool',
+    title: 'Attach Teacher',
+    moduleName: 'systemadmin',
+    iconType: 'material-icons-two-tone',
+    icon: 'school',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: [UserRole[UserRole.Admin]],
+    submenu: [],
   },
+  
 ]
