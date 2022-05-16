@@ -25,5 +25,10 @@ private ProgramToSchoolServices programToSchoolService;
 	public List<ProgramToSchoolProperties> getAllProgramsoSchool(){
 		return this.programToSchoolService.getAllProgramToSchool();
 	}
+	
+	@GetMapping("get-link")
+	public ProgramToSchoolProperties getLink( int ProgId,int schoolId){
+		return programToSchoolService.getLinked(ProgId,schoolId);
+	}
 
 }
