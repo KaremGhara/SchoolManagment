@@ -1,6 +1,8 @@
 package com.tsofen.users.beans;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -35,6 +37,6 @@ public class ProgramToSchoolProperties {
 	School school;	
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private String timeDescription;
+	private LocalTime  timeDescription;
 	//
 }

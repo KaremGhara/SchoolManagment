@@ -50,30 +50,8 @@ export class ProgramDetailsComponent implements OnInit {
 
 
 
-  deleteProgram(programModel) {
-        
-    Swal.fire({
-      title: 'Are you sure you want to delete '+programModel.name+"?",
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor:'#d33' ,
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
-      if (result.value) {            
-        this.programService.deleteProgram(programModel.id).subscribe(res =>{
-          if(res){
-            
-            Swal.fire('Deleted!', programModel.name+' has been deleted.', 'success');   
-            this.router.navigate([ProgramManagerURL+'/all'])   
-            this.programService.getAllProgram();
-          }
-        }) 
-      }
+  backtoList() {
       this.router.navigate([ProgramManagerURL+'/all'])
-    });    
-
 }
 
   updateProgram(id:number){

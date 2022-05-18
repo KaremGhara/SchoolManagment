@@ -9,14 +9,14 @@
         <mat-form-field style="margin:10px; width:250px" appearance="fill">
           <mat-label>Start Date: yyyy-mm-dd</mat-label>
           
-          <input matInput [(ngModel)]="program2school.endDate" type="date" [formControl]="linkForm.get('StartDate')" placeholder="Start Date"  required>        
+          <input matInput [(ngModel)]="program2school.startDate" type="date" [formControl]="linkForm.get('StartDate')" placeholder="Start Date"  required>        
         </mat-form-field>
         <!-- </div> -->
         
         <mat-form-field style="margin:10px; width:250px" appearance="fill">
             <mat-label>End Date: yyyy-mm-dd</mat-label>
             
-            <input matInput [(ngModel)]="program2school.startDate" type="date" [formControl]="linkForm.get('EndDate')"  placeholder="End Date" required>
+            <input matInput [(ngModel)]="program2school.endDate" type="date" [formControl]="linkForm.get('EndDate')"  placeholder="End Date" required>
           </mat-form-field></div>
          <div><mat-form-field style="margin:10px; width:250px" appearance="fill">
             <mat-label>Time</mat-label>

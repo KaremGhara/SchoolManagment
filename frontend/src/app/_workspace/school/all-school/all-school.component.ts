@@ -100,8 +100,14 @@ export class AllSchoolComponent implements OnInit {
     // }
 
 
-    editlink(row: ProgramToSchool) {
-        this.router.navigate(['/workspace/school/edit/', row.school.id, row.program.id])
+    editlink(row) {
+        console.log(row.properties[0].id.programId);
+        console.log(row.properties[0].id.schoolId);
+
+        const storedItems= JSON.parse(localStorage.getItem('currentUser'))
+        console.log(storedItems);
+        
+        this.router.navigate(['/workspace/school/edit/', row.properties[0].id.schoolId, row.properties[0].id.programId])
     }
 
 

@@ -40,46 +40,30 @@ export class EditLinkedProgramComponent implements OnInit {
     private fb: FormBuilder,
     private route:ActivatedRoute,
     private router:Router,
-    private programService:ProgramServiceService,
-     private schoolService: SchoolServiceService) {
-    this.progForm = this.fb.group({
-    });
+     private schoolService: SchoolServiceService,
+     private programService: ProgramServiceService) {
+    this.progForm = this.fb.group({});
+    this.progForm.addControl("startDate",new FormControl('', [Validators.required]))
+    this.progForm.addControl("endDate",new FormControl('', [Validators.required]))
+    this.progForm.addControl("Time",new FormControl('', [Validators.required]))
   }
   
-  startDate= new FormControl('', [Validators.required]);
-  endDate= new FormControl('', [Validators.required]);
-  Time= new FormControl('', [Validators.required]);
   ngOnInit(): void {
     this.schoolId=this.route.snapshot.params['id'];
-   this.progId=this.route.snapshot.params['id2'];
+    this.progId=this.route.snapshot.params['id2'];
 
-   this.schoolService.getLinkById(this.schoolId,this.progId).subscribe(data => {
-    this.programToSchool=data;
-    console.log(this.programToSchool)
+   this.programService.getLinkById(this.progId,this.schoolId).subscribe(data => {
+     console.log(data.timeDescription);
+     
+     console.log(data);
+     this.programToSchool=data
+     console.log(this.programToSchool);
+     
 })
     
     
     
   }
-//   validateDates(){
-//     this.isValidDate = true;
-//     if((this.startDate == null || this.endDate==null)){
-//       this.error={isError:true,errorMessage:'Start date and end date are required.'};
-//       this.isValidDate = false;
-//     }
-
-//     if((sDate != null && eDate !=null) && (eDate) < (sDate)){
-//       this.error={isError:true,errorMessage:'End date should be grater then start date.'};
-//       this.isValidDate = false;
-//     }
-//     return this.isValidDate;
-//   }
-//  }
-  
-//   if($scope.empModel.from > $scope.empModel.to){
-//     $scope.errMessage="Date is out of range!"
-//     return;
-//   }
 
 submit(){
   this.schoolService.editlink(this.programToSchool).subscribe(
@@ -97,33 +81,6 @@ submit(){
     }
   )
 }
-
-
-checkDates(){
-  //need to check
-  if ((this.startDate!=null)&&(this.endDate!=null)&& (this.startDate>this.endDate)){
-  
-   alert ("Not possible to be the start date bigger than the end date");
-  }
- }
-  getstartdateErrorMessage(){
- 
-    if (this.startDate.hasError('required')) {
-      return 'You must enter a value';
-    }
-    if(this.startDate.hasError('pattern')){
-      return 'Name is invalid'
-    }
-  }
-  getenddateErrorMessage(){
-    if (this.startDate.hasError('required')) {
-      return 'You must enter a value';
-    }
-  
-    if(this.startDate.hasError('pattern')){
-      return 'Name is invalid'
-    }
-  }
 
   backToList(){
     

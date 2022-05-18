@@ -36,11 +36,11 @@ export class SchoolServiceService {
     return this.httpClient.get<SchoolClassModel[]>(this.serverUrl+"get-school-classes?schoolId="+schoolId); 
   }
   editlink(link:ProgramToSchool): Observable<ProgramToSchool>{
-    return this.httpClient.post<ProgramToSchool>(this.serverUrl+"edit-link", link)
+    return this.httpClient.put<ProgramToSchool>(this.serverUrl+"edit-link", link)
   }
 
   getLinkById(schoolId:number, progId:number): Observable<ProgramToSchool>{
-    return this.httpClient.get<ProgramToSchool>(this.serverUrl+"get-link?schoolId="+schoolId+"&&ProgId="+progId)
+    return this.httpClient.get<ProgramToSchool>(this.serverUrl+"get-link?schoolId="+schoolId+"&ProgId="+progId)
   }
 
   getSchoolByUserId(id:number):Observable<SchoolModel>{

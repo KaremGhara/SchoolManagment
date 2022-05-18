@@ -43,9 +43,14 @@ public class SchoolService {
 	}
 	
 	public boolean updateLink(@RequestBody ProgramToSchoolProperties programToSchoolProperties) {
+		ProgramToSchoolProperties exsitprogramAttachedtoSchool = programToSchoolRepo.findByprogram_idAndSchool_idEquals(programToSchoolProperties.getId().getProgramId(),programToSchoolProperties.getId().getSchoolId());
+		if(exsitprogramAttachedtoSchool!=null) {
+			programToSchoolProperties.setId(exsitprogramAttachedtoSchool.getId());
+			programToSchoolRepo.save(programToSchoolProperties);
+			return true;
+		}
+		return false;
 
-		programToSchoolRepo.save(programToSchoolProperties);
-		return true;
 	}
 		
 		

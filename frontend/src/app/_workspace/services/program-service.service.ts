@@ -56,6 +56,8 @@ export class ProgramServiceService extends UnsubscribeOnDestroyAdapter {
     findNotLinkedPrograms(schoolId: number): Observable<ProgramModel[]> {
         return this.http.get<ProgramModel[]>(this.baseURL + "search/byIdSchool?schoolId=" + schoolId)
     }
-
+    getLinkById(schoolId:number, progId:number): Observable<ProgramToSchool>{
+        return this.http.get<ProgramToSchool>(this.baseURL+"get-link?ProgId="+progId+"&schoolId="+schoolId)
+      }
 
 }
