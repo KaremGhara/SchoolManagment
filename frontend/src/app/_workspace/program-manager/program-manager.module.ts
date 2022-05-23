@@ -32,6 +32,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
+import { AttachStudentsComponent } from './attach-students/attach-students.component';
 @NgModule({
   declarations: [
 
@@ -41,6 +42,7 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
       AddProgramComponent,
       EditProgramComponent,
       DeleteProgramComponent,
+      AttachStudentsComponent,
 
   ],
   imports: [

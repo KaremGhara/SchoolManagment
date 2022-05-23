@@ -36,35 +36,7 @@
               notifications_active
             </i>
           </button>
-          <div ngbDropdownMenu class="notification-dropdown pullDown">
-            <div class="noti-list" style="position: relative; max-width: 600px; max-height: 350px;" [perfectScrollbar]>
-              <ul class="menu">
-                <li class="nfc-header">
-                  <h5 class="mb-0">Notitications</h5>
-                </li>
-                <li>
-                  <a href="#" *ngFor="let notification of notifications" onClick="return false;"
-                    [ngClass]="[notification.status]">
-                    <span class="table-img msg-user ">
-                      <i class="material-icons-two-tone nfc-type-icon"
-                        [ngClass]="[notification.color]">{{notification.icon}}</i>
-                    </span>
-                    <span class="menu-info">
-                      <span class="menu-title">{{notification.message}}</span>
-                      <span class="menu-desc mt-2">
-                        <i class="material-icons">access_time</i> {{notification.time}}
-                      </span>
-                    </span>
-                    <span class="nfc-close">
-                      <app-feather-icons [icon]="'x'" [class]="'user-menu-icons'"></app-feather-icons>
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <a class="nfc-read-more">Read
-              All Notifications</a>
-          </div>
+
         </li>
         <!-- #END# Notifications-->
         <li class="nav-item" ngbDropdown>

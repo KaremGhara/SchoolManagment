@@ -166,6 +166,21 @@ export const ROUTES: RouteInfo[] = [
             role: [''],
             submenu: [],
       },
+      {
+        
+        
+        path: '/workspace/program-manager/attach-student',
+        title: 'all program',
+        moduleName: 'program-manager',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        role: [''],
+        submenu: [],
+  },
       
 
     ],

@@ -5,6 +5,7 @@ import { AllProgramComponent } from './all-program/all-program.component';
 import{ AddProgramComponent} from './add-program/add-program.component';
 import {EditProgramComponent} from './edit-program/edit-program.component';
 import {DeleteProgramComponent} from './delete-program/delete-program.component';
+import { AttachStudentsComponent } from '../school-staff/attach-students/attach-students.component';
 const routes: Routes = [{
 
     path:"all",
@@ -29,6 +30,7 @@ component:AddProgramComponent
     path:"delete-program",
     component:DeleteProgramComponent
     },
+    {path:"attach-student",component:AttachStudentsComponent}
 ];
 
 @NgModule({
