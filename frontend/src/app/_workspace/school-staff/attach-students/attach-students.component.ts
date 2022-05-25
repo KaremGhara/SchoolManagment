@@ -26,28 +26,35 @@ export class AttachStudentsComponent implements OnInit {
 
   constructor(private SchoolServiceService: SchoolServiceService,private classroomService : SchoolClassServiceService, private studentService : StudentServiceService, private programService: ProgramServiceService) { }
 
-  schools: SchoolModel[];
-  //schoolId:number=1; // should be sent as a parameter in path
+  school: SchoolModel=new SchoolModel();
   selectedSchool:SchoolModel;
   classrooms:SchoolClassModel[];
-  selectedClassroom:SchoolClassModel;
+  selectedClassroom:SchoolClassModel=new SchoolClassModel();
   students:StudentModel[];
   selectedStudent:StudentModel;
   programs:ProgramModel[];
   aviablePrograms:ProgramModel[];
+  schoolId:number
+
 
   ngOnInit(): void {
-    this.SchoolServiceService.getSchools().subscribe({
-      next: (schools: SchoolModel[] )=>{
-        this.schools= schools;
+    const storedItems= JSON.parse(localStorage.getItem('currentUser'))
+    this.schoolId=storedItems.id;
+
+    this.SchoolServiceService.getSchoolByUserId(this.schoolId).subscribe({
+      next: (school: SchoolModel )=>{
+        this.school= school;
+        this.getClassRooms();
       },
       error:(error)=> {alert("Couldn't load Schools")}
     })
+
+
   }
 
   getClassRooms()
   {
-    this.SchoolServiceService.getSchoolClasses(this.selectedSchool.id).subscribe((classRooms : SchoolClassModel[])=>{
+    this.SchoolServiceService.getSchoolClasses(this.school.id).subscribe((classRooms : SchoolClassModel[])=>{
       this.classrooms = classRooms;
     })
   }
@@ -75,8 +82,8 @@ export class AttachStudentsComponent implements OnInit {
 
   schoolSelected(school : SchoolModel)
   {
-    this.selectedSchool = school;
-    this.getClassRooms();
+    this.school = school;
+    this.getPrograms();
     this.students=null;
     this.programs=null;
   }
