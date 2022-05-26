@@ -57,7 +57,7 @@ export class AddStudentComponent implements OnInit {
   addStudent(){
     this.studetnService.addStudent(this.studentModel,this.selectedClassRoomId,this.schoolId).subscribe(
       res=>{
-        if(res){      
+        if(res){  
           Swal.fire({
             icon: 'success',
             title: 'Added',
@@ -66,7 +66,7 @@ export class AddStudentComponent implements OnInit {
         );
         this.router.navigate([muncipalityManager+'/allStudentsToMuncipality',this.schoolId])
         }  
-        if(!res){
+        else{ 
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

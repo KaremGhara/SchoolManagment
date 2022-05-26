@@ -8,6 +8,7 @@ import { SchoolClassModel } from '../../models/school-class-model';
 import { SchoolClassServiceService } from '../../services/school-class-service.service';
 import { SchoolServiceService } from '../../services/school-service.service';
 import { SchoolModel } from '../../models/school-model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-student',
@@ -69,6 +70,12 @@ export class UpdateStudentComponent implements OnInit {
     this.studetnService.updateStudent(this.studentModel).subscribe(
       res=>{
         if(res){
+          Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+            text: 'Student was updated Successfully...!!! ',
+        }        
+        );
           this.router.navigate([schoolStaffURL+"/allStudents"])
         }
         else{

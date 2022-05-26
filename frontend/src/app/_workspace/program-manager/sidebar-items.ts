@@ -16,7 +16,7 @@ export const programManagerRoute: RouteInfo[] =[
     submenu: [],
   },
   {   
-    path: '/workspace/program-manager/all',
+    path: '/workspace/program-manager/allPrograms',
     title: 'Show Programs',
     moduleName: 'program-manager',
     iconType: 'material-icons-two-tone',

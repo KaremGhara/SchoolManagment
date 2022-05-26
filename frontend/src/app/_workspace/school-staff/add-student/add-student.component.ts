@@ -51,8 +51,9 @@ export class AddStudentComponent implements OnInit {
     this.schoolService.getSchoolByUserId(this.idActor).subscribe(data=>{
       this.school=data;
       this.schoolId=this.school.id;
+      this.getAllclass();
     })
-    this.getAllclass();
+    
   }
   
 
@@ -74,7 +75,7 @@ export class AddStudentComponent implements OnInit {
         );
         this.router.navigate([schoolStaffURL+"/allStudents"])
         }       
-        if(!res){
+        else{
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

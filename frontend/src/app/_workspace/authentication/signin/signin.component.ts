@@ -63,7 +63,7 @@ export class SigninComponent
             if (role === this.userRole.Admin) {
               this.router.navigate(['workspace/system-admin/all']);
             } else if (role === this.userRole.ProgramManager) {
-              this.router.navigate(["workspace/program-manager/all"])
+              this.router.navigate(["workspace/program-manager/allPrograms"])
             } else if (role === this.userRole.SchoolStaff) {
               this.router.navigate(["workspace/school-staff/attach"]);
             }

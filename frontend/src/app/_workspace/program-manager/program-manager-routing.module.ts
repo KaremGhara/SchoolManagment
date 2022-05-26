@@ -8,7 +8,7 @@ import {DeleteProgramComponent} from './delete-program/delete-program.component'
 import { AttachStudentsComponent } from '../school-staff/attach-students/attach-students.component';
 const routes: Routes = [{
 
-    path:"all",
+    path:"allPrograms",
       component:AllProgramComponent
   },
 {

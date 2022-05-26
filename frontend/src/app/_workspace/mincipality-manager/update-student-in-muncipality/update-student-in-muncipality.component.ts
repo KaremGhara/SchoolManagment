@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { muncipalityManager } from '../../models/global-constant';
 import { SchoolClassModel } from '../../models/school-class-model';
 import { StudentModel } from '../../models/student-model';
@@ -60,6 +61,12 @@ export class UpdateStudentInMuncipalityComponent implements OnInit {
     this.studetnService.updateStudent(this.studentModel).subscribe(
       res=>{
         if(res){
+          Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+            text: 'Student was updated Successfully...!!! ',
+        }        
+        );
           this.router.navigate([muncipalityManager+"/allStudentsToMuncipality",this.schoolId])
         }
         else{
