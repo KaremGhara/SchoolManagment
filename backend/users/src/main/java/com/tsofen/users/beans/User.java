@@ -1,10 +1,9 @@
 package com.tsofen.users.beans;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonBackReference; 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import javax.persistence.Lob;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
@@ -15,22 +14,6 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "users")
-//original
-//@SQLDelete(sql = "UPDATE users SET status = false WHERE user_id = ?" ,check = ResultCheckStyle.COUNT)
-
-//
-//@SQLDelete(sql = "UPDATE users SET isDeleted = true WHERE user_id = ?")
-//@FilterDef(
-//		name = "deletedUserFilter",
-//		parameters = @ParamDef(name = "isDeleted", type = "boolean")
-//)
-//@Filter(
-//		name = "deletedUserFilter",
-//		condition = "deleted = :isDeleted"
-//)
-
-//@Where(clause = "deleted=false")
-
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -83,6 +66,7 @@ public class User {
 	)
 	@JsonBackReference
 	private School school;
+	
 }
 
 

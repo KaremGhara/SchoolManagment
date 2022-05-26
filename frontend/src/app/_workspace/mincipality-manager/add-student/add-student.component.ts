@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { StudentModel } from '../../models/student-model';
-import { StudentServiceService } from '../../services/student-service.service';
-import {schoolStaffURL} from '../../models/global-constant'
-import { SchoolClassModel } from '../../models/school-class-model';
-import { SchoolClassServiceService } from '../../services/school-class-service.service'
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { SchoolServiceService } from '../../services/school-service.service';
-import { SchoolModel } from '../../models/school-model';
+import { muncipalityManager } from '../../models/global-constant';
+import { SchoolClassModel } from '../../models/school-class-model';
+import { StudentModel } from '../../models/student-model';
+import { SchoolClassServiceService } from '../../services/school-class-service.service';
+import { StudentServiceService } from '../../services/student-service.service';
 
 @Component({
   selector: 'app-add-student',
@@ -20,8 +18,6 @@ export class AddStudentComponent implements OnInit {
   stdForm: FormGroup;
   classRooms:SchoolClassModel[];
   selectedClassRoomId:number;
-  idActor:number;
-  school:SchoolModel=new SchoolModel();
   schoolId: number;
   breadscrums = [
     {
@@ -31,11 +27,12 @@ export class AddStudentComponent implements OnInit {
     },
   ];
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
+    private route:ActivatedRoute,
     private router:Router,
     private studetnService:StudentServiceService,
     private shoolClassService:SchoolClassServiceService,
-    private schoolService:SchoolServiceService
     ) {
     this.stdForm = this.fb.group({});
     this.stdForm.addControl("Fname",new FormControl(''))
@@ -46,34 +43,29 @@ export class AddStudentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const storedItems= JSON.parse(localStorage.getItem('currentUser'))
-    this.idActor=storedItems.id;
-    this.schoolService.getSchoolByUserId(this.idActor).subscribe(data=>{
-      this.school=data;
-      this.schoolId=this.school.id;
-    })
-    this.getAllclass();
+    this.schoolId=this.route.snapshot.params['schoolId'];
+    this.getAllclassBySchoolId();
   }
   
 
-  private getAllclass(){
+  private getAllclassBySchoolId(){
     this.shoolClassService.getClassesBySchoolId(this.schoolId).subscribe(data => {
-      this.classRooms=data;     
+      this.classRooms=data;    
     })
   }
  
   addStudent(){
     this.studetnService.addStudent(this.studentModel,this.selectedClassRoomId,this.schoolId).subscribe(
       res=>{
-        if(res){                 
+        if(res){      
           Swal.fire({
             icon: 'success',
             title: 'Added',
             text: 'Student was added Successfully...!!! ',
-        }        
-        );
-        this.router.navigate([schoolStaffURL+"/allStudents"])
         }       
+        );
+        this.router.navigate([muncipalityManager+'/allStudentsToMuncipality',this.schoolId])
+        }  
         if(!res){
           Swal.fire({
             icon: 'error',
@@ -86,6 +78,7 @@ export class AddStudentComponent implements OnInit {
   }
   
   backToList(){
-    this.router.navigate([schoolStaffURL+"/allStudents"])
+    this.router.navigate([muncipalityManager+"/allStudentsToMuncipality",this.schoolId])
   }
+
 }

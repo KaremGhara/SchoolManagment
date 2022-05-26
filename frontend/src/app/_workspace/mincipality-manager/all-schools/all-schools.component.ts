@@ -7,7 +7,7 @@ import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {schoolStaffURL} from '../../models/global-constant'
+import {muncipalityManager} from '../../models/global-constant'
 
 
 
@@ -41,25 +41,21 @@ export class AllSchoolsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   
-
- 
-
-  ngOnInit(): void {
-    
+  ngOnInit(): void { 
     this.dataSource= new MatTableDataSource();
     this.getAllSchools();
   }
+
   refresh() {
     this.getAllSchools();
   }
 
-  allStudents(id:number,schoolName:String){
-    this.router.navigate([schoolStaffURL+'/all',id,schoolName])
+  manageStudents(id:number){
+    this.router.navigate([muncipalityManager+'/allStudentsToMuncipality',id])
   }
  
  
   private getAllSchools(){
-  
     this.schoolService.getSchools().subscribe(data => {
       this.isTblLoading = false;
       this.dataSource.data = data;

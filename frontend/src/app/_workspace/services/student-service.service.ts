@@ -27,8 +27,8 @@ export class StudentServiceService {
     
      return this.http.delete<StudentModel>(APP_URL+"students/delete-student?id="+id);
   }
-  addStudent(student: StudentModel,id:number):Observable<StudentModel> {
-    return this.http.post<StudentModel>(APP_URL+"students/add-student?classroomId="+id,student)
+  addStudent(student: StudentModel,id:number,schoolId:number):Observable<StudentModel> {
+    return this.http.post<StudentModel>(APP_URL+"students/add-student?classroomId="+id+'&schoolId='+schoolId,student)
   }
   saveStudentsFile(formData:FormData,id: number): Observable<StudentModel>{
     return this.http.post(APP_URL+"students/upload-student?schoolId="+id,formData);

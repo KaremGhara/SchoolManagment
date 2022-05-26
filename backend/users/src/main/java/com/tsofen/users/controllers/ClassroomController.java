@@ -33,6 +33,11 @@ public class ClassroomController {
 		
 	}
 	
+	@GetMapping("get-class-by-school-id")
+	public List<Classroom> getClassBySchoolId(int schoolId) {
+		 return classroomService.getAllClassesBySchoolId(schoolId);
+	}
+	
 	@GetMapping("get_classroom_student")
 	public List<Student> getClassroomStudents(int classroomId){
 		return classroomService.getClassroomStudents(classroomId);

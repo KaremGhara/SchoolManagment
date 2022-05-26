@@ -65,15 +65,9 @@ export class AttachSchoolStaffToSchoolComponent implements OnInit {
     })
     }
 
-    attachSchoolStaffToSchool(){
-      
+    attachSchoolStaffToSchool(){   
       this.userServiceService.attachSchoolStaffToSchool(this.selectedSchoolStaffId,this.school.id).subscribe(data => {
         this.selectedSchoolStaffId=data;
-        this.schoolServiceService.getSchoolById(this.school.id).subscribe(data1=>{
-          this.selectedSchoolStaffId.school=data1;
-          console.log(this.selectedSchoolStaffId);
-          
-        })
         this.findAllSchoolStaffNotLink();
         this.findUserSchoolStaffBySchool();
     })

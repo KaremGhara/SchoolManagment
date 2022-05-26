@@ -16,7 +16,7 @@ export const schoolStaffRoute: RouteInfo[] =[
         submenu: [],
     },
     {
-      path: '/workspace/school-staff/all',
+      path: '/workspace/school-staff/allStudents',
       title: 'Show Students',
       moduleName: 'schoolstaff',
       iconType: 'material-icons-two-tone',

@@ -7,15 +7,15 @@ import { AttachStudentsComponent } from './attach-students/attach-students.compo
 
 const routes: Routes = [
   {
-  path:"add/:id/:schoolName",
+  path:"addStudent",
     component:AddStudentComponent
 },
 {
-  path:"all",
+  path:"allStudents",
   component:AllStudentsComponent
 },
 {
-  path:"update/:id/:idrow/:schoolName",
+  path:"updateStudent/:idrow",
   component:UpdateStudentComponent
 },
 {

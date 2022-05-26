@@ -19,41 +19,37 @@ public class ClassroomService {
 
 	@Autowired
 	private SchoolRepo schoolRepo;
-	
+
 	@Autowired
 	private StudentRepo studentRepo;
 
-	
-	public List<Classroom> getAllClasses(){
+	public List<Classroom> getAllClasses() {
 		return classroomRepo.findAllByStatus(true);
 	}
 
-	
+	public List<Classroom> getAllClassesBySchoolId(int schoolId) {
+		List<Classroom> classRoom = classroomRepo.findByschool_idEquals(schoolId);
+		return classRoom;
+	}
 
-
-	//@SuppressWarnings("unchecked")
-	public List<Student> getClassroomStudents(int classRoomId){
-		Classroom classRoom= classroomRepo.findById(classRoomId);
+	public List<Student> getClassroomStudents(int classRoomId) {
+		Classroom classRoom = classroomRepo.findById(classRoomId);
 		return classRoom.getStudents();
 	}
-	
-	
-	//Check with mahmod
+
 	public void addClassroom(Classroom classroom, int schoolId) {
-		Classroom exists = 
+		Classroom exists =
+
 				classroomRepo.findByGradeAndOrdinalNumber(classroom.getGrade(), classroom.getOrdinalNumber());
-		if(exists!=null)
-			throw new IllegalStateException("School class " + exists.getGrade()+" " +exists.getOrdinalNumber()+" Already Exists!");
-		else
-		{
-			School  school =schoolRepo.findById(schoolId);
+		School school = schoolRepo.findById(schoolId);
+		if (exists != null)
+			throw new IllegalStateException(
+					"School class " + exists.getGrade() + " " + exists.getOrdinalNumber() + " Already Exists!");
+		else {
 			classroom.setSchool(school);
 			classroomRepo.save(classroom);
-			
 		}
-			
 	}
-
 
 	public void editClassroom(Classroom classroom) {
 		Classroom class2change = classroomRepo.findById(classroom.getId());
@@ -61,30 +57,26 @@ public class ClassroomService {
 		classroomRepo.save(classroom);
 	}
 
-	
 	public void deleteClassroom(int id) {
-		Classroom classroom=classroomRepo.getById(id);
+		Classroom classroom = classroomRepo.getById(id);
 		classroom.setStatus(false);
-	    classroomRepo.save(classroom);
+		classroomRepo.save(classroom);
 
-		
-		
 	}
-	
+
 	public List<Classroom> SearchClassbyGrade(String grade) {
 		return classroomRepo.findAllByGradeIgnoreCase(grade);
 	}
-	
+
 	public Classroom getClassById(int id) {
-		 return classroomRepo.findById(id);
-		
+		return classroomRepo.findById(id);
+
 	}
-	
+
 	public void deleteStudentClassRoom(int id) {
-		Student student=studentRepo.getById(id);
+		Student student = studentRepo.getById(id);
 		student.setActive(false);
 		studentRepo.save(student);
 	}
-
 
 }

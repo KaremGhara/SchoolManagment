@@ -29,72 +29,81 @@ import com.tsofen.users.repos.StudentRepo;
 public class StudentService {
 	@Autowired
 	private StudentRepo studentRepo;
-	
+
 	@Autowired
 	SchoolRepo schoolRepo;
-	
+
 	@Autowired
 	ClassroomRepo classroomRepo;
 
 	@Autowired
 	ProgramRepo programRepo;
-	
+
 	@Autowired
 	ClassroomService classroomService;
-	
-	HelperCSV helperCSV=new HelperCSV();
-	
+
+	HelperCSV helperCSV = new HelperCSV();
+
 	@Autowired
 	private EntityManager entityManager;
 
-	
 	public List<Student> getAllStudents() {
 		return studentRepo.findAll();
 	}
 
-	public boolean addStudent(Student student,int classRoomId) {
-		Student exsitingStudent=studentRepo.findBySocialId(student.getSocialId());
-		if(exsitingStudent==null) {
-			Classroom classroom=this.classroomRepo.findById(classRoomId);
-			if(classroom==null)
-			{
-				return false;
+	public boolean addStudent(Student student, int classRoomId, int schoolId) {
+		Student exsitingStudent = studentRepo.findBySocialId(student.getSocialId());
+		if (exsitingStudent == null) {
+			Classroom exsistClassroom = classroomRepo.findById(classRoomId);
+			Classroom classRoomNew = new Classroom();
+			classRoomNew.setGrade(exsistClassroom.getGrade());
+			classRoomNew.setOrdinalNumber(exsistClassroom.getOrdinalNumber());
+			School school = schoolRepo.findById(schoolId);
+			Classroom classssssroom = classroomRepo.findByGradeAndOrdinalNumber(exsistClassroom.getGrade(),
+					exsistClassroom.getOrdinalNumber());
+
+			if (classssssroom == null || classssssroom.getSchool().getId() != schoolId) {
+				classroomRepo.save(classRoomNew);
+				student.setClassroom(classRoomNew);
+				student.getClassroom().setSchool(school);
+				studentRepo.save(student);
+				return true;
+			} else {
+				student.setClassroom(classssssroom);
+				student.getClassroom().setSchool(school);
+				studentRepo.save(student);
+				return true;
 			}
-			student.setClassroom(classroom);
-			student.getClassroom().setSchool(classroom.getSchool());
-			studentRepo.save(student);
-			return true;
 		}
 		return false;
 	}
-	
+
 	public List<Student> getAllStudentsInSchool(int schoolId) {
-	    List<Student> listStu = new ArrayList<Student>();
-		School school=schoolRepo.findById(schoolId);
-		List<Classroom> classroom=school.getClassrooms();
-		
-		for(Classroom classes:classroom) {
-			Classroom classRoom= classroomRepo.findById(classes.getId());
-			listStu.addAll(classRoom.getStudents()); 
+		List<Student> listStu = new ArrayList<Student>();
+		School school = schoolRepo.findById(schoolId);
+		List<Classroom> classroom = school.getClassrooms();
+
+		for (Classroom classes : classroom) {
+			Classroom classRoom = classroomRepo.findById(classes.getId());
+			listStu.addAll(classRoom.getStudents());
 		}
-		
+
 		return listStu;
 	}
-	
-	public List<Student> findAll(boolean isDeleted){
-	       Session session = entityManager.unwrap(Session.class);
-	        Filter filter = session.enableFilter("deletedStudentFilter");
-	        filter.setParameter("isDeleted", isDeleted);
-	        List<Student> students =  studentRepo.findAll();
-	        session.disableFilter("deletedProductFilter");
-	        return students;
-	    }
-	
+
+	public List<Student> findAll(boolean isDeleted) {
+		Session session = entityManager.unwrap(Session.class);
+		Filter filter = session.enableFilter("deletedStudentFilter");
+		filter.setParameter("isDeleted", isDeleted);
+		List<Student> students = studentRepo.findAll();
+		session.disableFilter("deletedProductFilter");
+		return students;
+	}
 
 	@Transactional
-	public boolean updateStudent(Student  student) {
+	public boolean updateStudent(Student student) {
 		Student exsitStudent = studentRepo.findById(student.getId());
-		if(exsitStudent!=null) {
+		if (exsitStudent != null) {
 			student.setId(exsitStudent.getId());
 			student.getClassroom().setId(student.getClassroom().getId());
 			studentRepo.save(student);
@@ -103,33 +112,29 @@ public class StudentService {
 		return false;
 	}
 
-	//,int schoolId
-	public void saveCSV(MultipartFile file,int schoolId) {
+	// ,int schoolId
+	public void saveCSV(MultipartFile file, int schoolId) {
 		try {
 			List<Student> students = helperCSV.convertExcelToStudent(file.getInputStream());
-			for(Student stu:students)
-			{
-				
-				
+			for (Student stu : students) {
+
 				Student exsisting = studentRepo.findBySocialId(stu.getSocialId());
-				if(exsisting==null)
-				{
-				Classroom classroom=classroomRepo.findByGradeAndOrdinalNumber(stu.getClassroom().getGrade(),stu.getClassroom().getOrdinalNumber());
-				
-				if(classroom==null)
-				{
-					
-					School school=schoolRepo.findById(schoolId);
-					stu.getClassroom().setSchool(school);
-					studentRepo.save(stu);
-				}
-				else {
-					School school=schoolRepo.findById(schoolId);
-					classroom.setSchool(school);
-					stu.setClassroom(classroom);
-					studentRepo.save(stu);
-				}
-				
+				if (exsisting == null) {
+					Classroom classroom = classroomRepo.findByGradeAndOrdinalNumber(stu.getClassroom().getGrade(),
+							stu.getClassroom().getOrdinalNumber());
+
+					if (classroom == null) {
+
+						School school = schoolRepo.findById(schoolId);
+						stu.getClassroom().setSchool(school);
+						studentRepo.save(stu);
+					} else {
+						School school = schoolRepo.findById(schoolId);
+						classroom.setSchool(school);
+						stu.setClassroom(classroom);
+						studentRepo.save(stu);
+					}
+
 				}
 			}
 
@@ -149,47 +154,44 @@ public class StudentService {
 //		return false;
 //
 //	}
-	
-	
-	public boolean deleteStd(int id) {
-		Student delStudent =  studentRepo.findById(id);
 
-		if(delStudent!=null)
-		{
+	public boolean deleteStd(int id) {
+		Student delStudent = studentRepo.findById(id);
+
+		if (delStudent != null) {
 			classroomService.deleteStudentClassRoom(id);
 			return true;
 		}
 		return false;
 	}
-	
-
 
 	public Student findBySocialId(String socialId) {
 		Student student = studentRepo.findBySocialId(socialId);
-		if(student==null)
+		if (student == null)
 			throw new IllegalStateException("Student with ID: " + socialId + " Doesn't Exist!");
 		else
 			return student;
 	}
+
 	public Student findById(int id) {
 		return studentRepo.findById(id);
 
 	}
-	
-	public List<Student> findByExist(boolean exist){
+
+	public List<Student> findByExist(boolean exist) {
 		return studentRepo.findByIsActive(exist);
 	}
 
 	public List<Program> getStudentPrograms(int studentId) {
 		return studentRepo.findById(studentId).getPrograms();
 	}
-	
+
 	public boolean addProgram(int studentId, int programId) {
-		Program programToAdd= programRepo.getById(programId);
+		Program programToAdd = programRepo.getById(programId);
 		Student exsitingStudent = studentRepo.findById(studentId);
-		
+
 		for (Program isExsitingprogram : exsitingStudent.getPrograms()) {
-			if (isExsitingprogram.getId()== programId) {
+			if (isExsitingprogram.getId() == programId) {
 				return false;
 			}
 		}
@@ -197,35 +199,30 @@ public class StudentService {
 		studentRepo.save(exsitingStudent);
 		return true;
 	}
-	
-	public List<Program> findAvilablePrograms(int studentId){
-		Student student= studentRepo.findById(studentId);
-		List<Program> studentPrograms= student.getPrograms();
+
+	public List<Program> findAvilablePrograms(int studentId) {
+		Student student = studentRepo.findById(studentId);
+		List<Program> studentPrograms = student.getPrograms();
 		List<Program> avilablePrograms = programRepo.getProgramsBySchool(student.getClassroom().getSchool().getId());
-		for (Program prog: studentPrograms) {
+		for (Program prog : studentPrograms) {
 			if (studentPrograms.contains(prog)) {
 				avilablePrograms.remove(prog);
 			}
 		}
 		return avilablePrograms;
 	}
+
 	public boolean removeProgram(int studentId, int programId) {
 		Student existingStudent = studentRepo.findById(studentId);
 		List<Program> existingPrograms = existingStudent.getPrograms();
-		System.out.println("existingPrograms.size():"+existingPrograms.size());
+		System.out.println("existingPrograms.size():" + existingPrograms.size());
 		for (int i = 0; i < existingPrograms.size(); i++) {
 			if (existingPrograms.get(i).getId() == programId) {
-				existingStudent.getPrograms().remove(i);		
+				existingStudent.getPrograms().remove(i);
 				studentRepo.save(existingStudent);
 				return true;
 			}
-		}	
+		}
 		return false;
 	}
 }
-
-
-
-
-
-

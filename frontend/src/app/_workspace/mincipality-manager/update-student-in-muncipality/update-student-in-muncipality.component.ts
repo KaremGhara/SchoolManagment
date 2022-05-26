@@ -1,27 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { StudentModel } from '../../models/student-model';
-import { StudentServiceService } from '../../services/student-service.service';
-import { schoolStaffURL } from '../../models/global-constant';
+import { ActivatedRoute, Router } from '@angular/router';
+import { muncipalityManager } from '../../models/global-constant';
 import { SchoolClassModel } from '../../models/school-class-model';
+import { StudentModel } from '../../models/student-model';
 import { SchoolClassServiceService } from '../../services/school-class-service.service';
-import { SchoolServiceService } from '../../services/school-service.service';
-import { SchoolModel } from '../../models/school-model';
+import { StudentServiceService } from '../../services/student-service.service';
 
 @Component({
-  selector: 'app-update-student',
-  templateUrl: './update-student.component.html',
-  styleUrls: ['./update-student.component.sass']
+  selector: 'app-update-student-in-muncipality',
+  templateUrl: './update-student-in-muncipality.component.html',
+  styleUrls: ['./update-student-in-muncipality.component.sass']
 })
-
-export class UpdateStudentComponent implements OnInit {
+export class UpdateStudentInMuncipalityComponent implements OnInit {
   stdid:number;
-  userId:number;
+  schoolId:number;
   studentModel:StudentModel=new StudentModel();
   stdForm: FormGroup;
   classRooms:SchoolClassModel[];
-  school:SchoolModel=new SchoolModel();
 
   breadscrums = [
     {
@@ -37,7 +33,6 @@ export class UpdateStudentComponent implements OnInit {
     private router:Router,
     private studetnService:StudentServiceService,
     private shoolClassService:SchoolClassServiceService,
-    private schoolService:SchoolServiceService
     ) {
     this.stdForm = this.fb.group({});
     this.stdForm.addControl("Fname",new FormControl(''))
@@ -46,30 +41,26 @@ export class UpdateStudentComponent implements OnInit {
     this.stdForm.addControl("classroom",new FormControl(''))
   }
 
-
   ngOnInit(): void {
     this.stdid=this.route.snapshot.params['idrow'];
-    const storedItems= JSON.parse(localStorage.getItem('currentUser'))
-    this.userId=storedItems.id;
-    this.schoolService.getSchoolByUserId(this.userId).subscribe(res=>{
-    this.school=res;
-    this.shoolClassService.getClassesBySchoolId(this.school.id).subscribe(data => {
+    this.schoolId=this.route.snapshot.params['schoolId'];
+    this.shoolClassService.getClassesBySchoolId(this.schoolId).subscribe(data => {
       this.classRooms=data;
       this.studetnService.getStudentById(this.stdid).subscribe((data)=>{
         this.studentModel=data;
         this.studentModel.classroom=this.classRooms[this.studentModel.classroom.id];
       },(e)=>{
-        alert(e);  
+        alert(e);
       })      
-    })
-    })  
+    })      
   }
 
-  updateUser(){
+
+  updateStudent(){
     this.studetnService.updateStudent(this.studentModel).subscribe(
       res=>{
         if(res){
-          this.router.navigate([schoolStaffURL+"/allStudents"])
+          this.router.navigate([muncipalityManager+"/allStudentsToMuncipality",this.schoolId])
         }
         else{
           alert(" incorrect!")
@@ -77,9 +68,9 @@ export class UpdateStudentComponent implements OnInit {
       }
     )
   }
- 
-  backToList(){
-    this.router.navigate([schoolStaffURL+"/allStudents"])
-  }
 
+
+  backToList(){
+    this.router.navigate([muncipalityManager+"/allStudentsToMuncipality",this.schoolId])
+  }
 }

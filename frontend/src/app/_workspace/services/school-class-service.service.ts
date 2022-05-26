@@ -20,6 +20,10 @@ export class SchoolClassServiceService {
   getClasses(): Observable<SchoolClassModel[]>{
     return this.httpClient.get<SchoolClassModel[]>(this.serverUrl+"get_all_classes") 
   }
+  getClassesBySchoolId(schoolId:number): Observable<SchoolClassModel[]>{
+    return this.httpClient.get<SchoolClassModel[]>(this.serverUrl+"get-class-by-school-id?schoolId="+schoolId) 
+  }
+  
 
   getSchoolClasses(schoolId:number): Observable<SchoolClassModel[]>{
     return this.httpClient.get<SchoolClassModel[]>(this.serverUrl+"get-school-classes?schoolId="+schoolId); 

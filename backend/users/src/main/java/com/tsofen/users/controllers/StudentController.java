@@ -31,8 +31,8 @@ public class StudentController {
 	private StudentService studentService;
 
 	@PostMapping("add-student")
-	public boolean addStudent(@RequestBody Student  student,@RequestParam int classroomId) {
-		if(this.studentService.addStudent(student,classroomId)) {
+	public boolean addStudent(@RequestBody Student  student,@RequestParam int classroomId,@RequestParam int schoolId) {
+		if(this.studentService.addStudent(student,classroomId,schoolId)) {
 			return true;
 		}
 		else {return false;}
