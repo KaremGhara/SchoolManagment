@@ -1,0 +1,28 @@
+<app-screen-container [title]="'Edit linked program'" [breadscrums]="breadscrums">
+
+    <form #formInfo="ngForm" class="form m-4" [formGroup]="progForm">
+       <div>
+       <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
+           <mat-label class="">Time</mat-label>
+           <input matInput  [(ngModel)]="programToSchool.timeDescription" matInput type="time" required [formControl]="progForm.get('Time')">
+       </mat-form-field>
+   </div>
+   <div>
+       <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
+           <mat-label class="">Start date</mat-label>
+           <input [(ngModel)]="programToSchool.startDate" matInput type="date" required [formControl]="progForm.get('startDate')">
+       </mat-form-field>
+       <mat-form-field class="" style="margin:10px; width:250px" appearance="fill" >
+           <mat-label class="">End date</mat-label>
+           <input [(ngModel)]="programToSchool.endDate" matInput type="date" required [formControl]="progForm.get('endDate')">
+       </mat-form-field>
+     
+       </div>
+       
+           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" style="margin:10px">
+               <button class="btn-space"  mat-raised-button color="primary" [disabled]="!progForm.valid " (click)="submit()">Submit</button>
+               <button type="button" mat-button (click)="backToList()">Cancel</button>
+             </div>  
+       
+   </form>  
+</app-screen-container>

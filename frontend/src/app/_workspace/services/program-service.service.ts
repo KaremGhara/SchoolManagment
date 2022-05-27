@@ -60,4 +60,16 @@ export class ProgramServiceService extends UnsubscribeOnDestroyAdapter {
         return this.http.get<ProgramToSchool>(this.baseURL+"get-link?ProgId="+progId+"&schoolId="+schoolId)
       }
 
+      updateProgramLink(programToSchool: ProgramToSchool):Observable<ProgramToSchool> {
+        return this.http.put<ProgramToSchool>(this.baseURL+"update-program-link",programToSchool)
+      }
+
+      getLinkBySchoolId(schoolId:number): Observable<ProgramToSchool[]>{
+        return this.http.get<ProgramToSchool[]>(this.baseURL+"get-link-by-school-id?schoolId="+schoolId)
+      }
+
+      getProgramByName(programName: string): Observable<ProgramModel> {
+        return this.http.get<ProgramModel>(this.baseURL + "search/byName?name=" + programName);
+    };
+
 }

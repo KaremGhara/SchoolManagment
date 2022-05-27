@@ -10,5 +10,6 @@ export class ProgramToSchool {
         public startDate?: Date,
         public endDate?: Date,
         public timeDescription?: Time,
+        public programName?:string,
     ) { }
 }

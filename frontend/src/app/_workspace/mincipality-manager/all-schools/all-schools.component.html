@@ -47,12 +47,22 @@
              <mat-cell *matCellDef="let row"> {{row.address}}
              </mat-cell>
            </ng-container>
+           
+           <!-- Acions Column -->
 
-           <ng-container matColumnDef="management">
+           <ng-container matColumnDef="managementStudents">
             <mat-header-cell *matHeaderCellDef>
             </mat-header-cell>
             <mat-cell *matCellDef="let row;">
               <button mat-raised-button color="primary" (click)="manageStudents(row.id)">Manage Students</button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="managementPrograms">
+            <mat-header-cell *matHeaderCellDef>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row;">
+              <button mat-raised-button color="primary" (click)="managePrograms(row.id)">Manage Programs</button>
             </mat-cell>
           </ng-container>
            

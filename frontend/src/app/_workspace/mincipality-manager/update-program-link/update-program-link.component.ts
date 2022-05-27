@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ProgramServiceService } from '../../services/program-service.service';
-import{ProgramToSchool}from '../../models/ProgramToSchool';
-import {Location} from '@angular/common';
 import Swal from 'sweetalert2';
+import { ProgramToSchool } from '../../models/ProgramToSchool';
+import { ProgramServiceService } from '../../services/program-service.service';
+import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-edit-linked-program',
-  templateUrl: './edit-linked-program.component.html',
-  styleUrls: ['./edit-linked-program.component.sass']
+  selector: 'app-update-program-link',
+  templateUrl: './update-program-link.component.html',
+  styleUrls: ['./update-program-link.component.sass']
 })
-export class EditLinkedProgramComponent implements OnInit {
-
+export class UpdateProgramLinkComponent implements OnInit {
 
   breadscrums = [
     {
@@ -70,5 +69,4 @@ submit(){
   backToList(){
     this._location.back();
   }
-
 }

@@ -14,7 +14,7 @@ const routes: Routes = [{
       component:SchoolToProgramComponent
   },
   {
-    path:"edit/:id/:id2",
+    path:"edit/:schoolId/:programId",
     component:EditLinkedProgramComponent},
     {path:"linkProgramsSchool",
       component:ProgramsToSchoolComponent

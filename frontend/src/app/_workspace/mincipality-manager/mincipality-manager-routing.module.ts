@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { AllSchoolsComponent } from './all-schools/all-schools.component';
 import { AllStudentForMuncipalityComponent } from './all-student-for-muncipality/all-student-for-muncipality.component';
+import { ProgramsInSchoolsComponent } from './programs-in-schools/programs-in-schools.component';
+import { UpdateProgramLinkComponent } from './update-program-link/update-program-link.component';
 import { UpdateStudentInMuncipalityComponent } from './update-student-in-muncipality/update-student-in-muncipality.component';
 const routes: Routes = [{
   path:"allSchools",
@@ -19,7 +21,15 @@ const routes: Routes = [{
 {
   path:"updateStudent/:idrow/:schoolId",
     component:UpdateStudentInMuncipalityComponent
-}
+},
+{
+  path:"showProgramsInSchool/:schoolId",
+    component:ProgramsInSchoolsComponent
+},
+{
+  path:"updateProgramLink/:schoolId/:programId",
+    component:UpdateProgramLinkComponent
+},
 
 ];
 

@@ -23,7 +23,7 @@ export class AllSchoolsComponent implements OnInit {
   schools: SchoolModel;
   isTblLoading = true;
   Schools:SchoolModel[]=[];
-  displayedColumns=['name','address','management']
+  displayedColumns=['name','address','managementStudents','managementPrograms']
   dataSource:MatTableDataSource<SchoolModel>;
   breadscrums = [
     {
@@ -52,6 +52,10 @@ export class AllSchoolsComponent implements OnInit {
 
   manageStudents(id:number){
     this.router.navigate([muncipalityManager+'/allStudentsToMuncipality',id])
+  }
+
+  managePrograms(id:number){
+    this.router.navigate([muncipalityManager+'/showProgramsInSchool',id])
   }
  
  

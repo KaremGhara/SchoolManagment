@@ -26,6 +26,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { UpdateStudentInMuncipalityComponent } from './update-student-in-muncipality/update-student-in-muncipality.component';
+import { ProgramsInSchoolsComponent } from './programs-in-schools/programs-in-schools.component';
+import { UpdateProgramLinkComponent } from './update-program-link/update-program-link.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { UpdateStudentInMuncipalityComponent } from './update-student-in-muncipa
     AllSchoolsComponent,
           AllStudentForMuncipalityComponent,
           AddStudentComponent,
-          UpdateStudentInMuncipalityComponent
+          UpdateStudentInMuncipalityComponent,
+          ProgramsInSchoolsComponent,
+          UpdateProgramLinkComponent
   ],
   imports: [
     CommonModule,
