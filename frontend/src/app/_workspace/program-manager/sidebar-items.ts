@@ -42,9 +42,9 @@ export const programManagerRoute: RouteInfo[] =[
   submenu: [],
 },
 {
-  path: '/workspace/school/allPrograms',
+  path: '/workspace/program-manager/programsSchools',
   title: 'Show Programs Schools',
-  moduleName: 'school',
+  moduleName: 'program-manager',
   iconType: 'material-icons-two-tone',
   icon: 'layers',
   class: '',

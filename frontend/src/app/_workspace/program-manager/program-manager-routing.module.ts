@@ -6,6 +6,8 @@ import{ AddProgramComponent} from './add-program/add-program.component';
 import {EditProgramComponent} from './edit-program/edit-program.component';
 import {DeleteProgramComponent} from './delete-program/delete-program.component';
 import { AttachStudentsComponent } from '../school-staff/attach-students/attach-students.component';
+import { ProgramsSchoolsComponent } from './programs-schools/programs-schools.component';
+import { UpdateProgramLinkInProgramManagerComponent } from './update-program-link-in-program-manager/update-program-link-in-program-manager.component';
 const routes: Routes = [{
 
     path:"allPrograms",
@@ -27,10 +29,21 @@ component:AddProgramComponent
   component:EditProgramComponent
   },
   {
-    path:"delete-program",
-    component:DeleteProgramComponent
-    },
-    {path:"attach-student",component:AttachStudentsComponent}
+   path:"delete-program",
+   component:DeleteProgramComponent
+  },
+  {
+  path:"attach-student",
+  component:AttachStudentsComponent
+  },
+  {
+  path:"programsSchools",
+  component:ProgramsSchoolsComponent
+   },
+   {
+    path:"updateProgramLink/:schoolId/:programId",
+    component:UpdateProgramLinkInProgramManagerComponent
+     },
 ];
 
 @NgModule({

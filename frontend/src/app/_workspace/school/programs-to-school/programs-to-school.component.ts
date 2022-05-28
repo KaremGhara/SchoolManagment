@@ -127,11 +127,6 @@ selectedProgId:ProgramModel= new ProgramModel;
   
     
     attachProgToSchool(){
-      alert(this.selectedProgId.id)
-      alert(this.schoolU)
-      console.log(this.schoolData);
-      
-      
       this.router.navigate(['/workspace/school/link/', this.selectedProgId.id,this.schoolData.id])
     }
    

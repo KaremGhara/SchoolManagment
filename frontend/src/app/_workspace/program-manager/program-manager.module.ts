@@ -33,6 +33,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { AttachStudentsComponent } from './attach-students/attach-students.component';
+import { ProgramsSchoolsComponent } from './programs-schools/programs-schools.component';
+import { UpdateProgramLinkInProgramManagerComponent } from './update-program-link-in-program-manager/update-program-link-in-program-manager.component';
 @NgModule({
   declarations: [
 
@@ -43,6 +45,8 @@ import { AttachStudentsComponent } from './attach-students/attach-students.compo
       EditProgramComponent,
       DeleteProgramComponent,
       AttachStudentsComponent,
+      ProgramsSchoolsComponent,
+      UpdateProgramLinkInProgramManagerComponent,
 
   ],
   imports: [
