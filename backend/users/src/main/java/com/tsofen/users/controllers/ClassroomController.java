@@ -64,4 +64,9 @@ public class ClassroomController {
 		return classroomService.SearchClassbyGrade(Grade);	
 	}
 	
+	@GetMapping("get-student-by-schoolId-classRoomId")
+	public List<Student> getStudentsByClassRoomIdAndSchoolid(int schoolId, int classroomId){
+		return classroomService.getStudentsByClassRoomIdAndSchoolid(schoolId,classroomId);
+	}
+	
 }

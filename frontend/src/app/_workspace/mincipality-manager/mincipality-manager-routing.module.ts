@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddStudentComponent } from './add-student/add-student.component';
+import { AllClassesRoomsInmuncipalityComponent } from './all-classes-rooms-inmuncipality/all-classes-rooms-inmuncipality.component';
 import { AllSchoolsComponent } from './all-schools/all-schools.component';
 import { AllStudentForMuncipalityComponent } from './all-student-for-muncipality/all-student-for-muncipality.component';
 import { ProgramsInSchoolsComponent } from './programs-in-schools/programs-in-schools.component';
@@ -29,6 +30,10 @@ const routes: Routes = [{
 {
   path:"updateProgramLink/:schoolId/:programId",
     component:UpdateProgramLinkComponent
+},
+{
+  path:"allClassesRoomInMucipality/:schoolId",
+    component:AllClassesRoomsInmuncipalityComponent
 },
 
 ];

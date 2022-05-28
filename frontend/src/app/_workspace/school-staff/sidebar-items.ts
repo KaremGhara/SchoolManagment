@@ -15,9 +15,10 @@ export const schoolStaffRoute: RouteInfo[] =[
         role: [UserRole[UserRole.SchoolStaff]],
         submenu: [],
     },
+    // all students by select class room
     {
-      path: '/workspace/school-staff/allStudents',
-      title: 'Show Students',
+      path: '/workspace/school-staff/allClassesRoomsInSchoolStaff',
+      title: 'Show Classes Rooms',
       moduleName: 'schoolstaff',
       iconType: 'material-icons-two-tone',
       icon: 'person',
@@ -28,6 +29,20 @@ export const schoolStaffRoute: RouteInfo[] =[
       role: [UserRole[UserRole.SchoolStaff]],
       submenu: [],
     },
+    //another choose option to all students
+    // {
+    //   path: '/workspace/school-staff/allStudents',
+    //   title: 'Show Students',
+    //   moduleName: 'schoolstaff',
+    //   iconType: 'material-icons-two-tone',
+    //   icon: 'person',
+    //   class: '',
+    //   groupTitle: false,
+    //   badge: '',
+    //   badgeClass: '',
+    //   role: [UserRole[UserRole.SchoolStaff]],
+    //   submenu: [],
+    // },
     {
       path: '/workspace/school-staff/attach',
       title: 'Attach Students',

@@ -41,6 +41,8 @@ import { ClassroomlistComponent } from './classroomlist/classroomlist.component'
 import { ImportFileComponent } from './all-students/dialogs/import-file/import-file.component';
 import { AviableProgramCardComponent } from './aviable-program-card/aviable-program-card.component';
 import { LinkProgramToSchoolComponent } from './link-program-to-school/link-program-to-school.component';
+import { SelectorClassesRoomInSchoolStaffComponent } from './selector-classes-room-in-school-staff/selector-classes-room-in-school-staff.component';
+import { AllClassesRoomsInSchoolStaffComponent } from './all-classes-rooms-in-school-staff/all-classes-rooms-in-school-staff.component';
 
 
 
@@ -62,7 +64,9 @@ import { LinkProgramToSchoolComponent } from './link-program-to-school/link-prog
     ClassroomlistComponent,
     ImportFileComponent,
     AviableProgramCardComponent,
-    LinkProgramToSchoolComponent
+    LinkProgramToSchoolComponent,
+    SelectorClassesRoomInSchoolStaffComponent,
+    AllClassesRoomsInSchoolStaffComponent
   ],
   imports: [
     CommonModule,

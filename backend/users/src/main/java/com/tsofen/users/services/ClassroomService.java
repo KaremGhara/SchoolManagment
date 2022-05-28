@@ -1,8 +1,6 @@
 package com.tsofen.users.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import java.util.List; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.tsofen.users.beans.Classroom;
@@ -78,5 +76,11 @@ public class ClassroomService {
 		student.setActive(false);
 		studentRepo.save(student);
 	}
+	
+	public List<Student> getStudentsByClassRoomIdAndSchoolid(int schoolId,int classRoomId) {
+		Classroom classRoom = classroomRepo.findByschool_idAndId(schoolId,classRoomId);
+		return classRoom.getStudents();
+	}
+
 
 }

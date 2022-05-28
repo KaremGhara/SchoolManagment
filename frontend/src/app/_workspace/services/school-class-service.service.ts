@@ -35,4 +35,8 @@ export class SchoolClassServiceService {
   getClassById(id:number): Observable<SchoolClassModel>{
     return this.httpClient.get<SchoolClassModel>(this.serverUrl+"get-class-by-id?id="+id);
   }
+
+  getStudentsBySchoolIdAndClassRoomId(schoolId:number,classroomId:number): Observable<StudentModel[]> {
+    return this.httpClient.get<StudentModel[]>(this.serverUrl+"get-student-by-schoolId-classRoomId?schoolId="+schoolId+"&classroomId="+classroomId);
+  }
 }

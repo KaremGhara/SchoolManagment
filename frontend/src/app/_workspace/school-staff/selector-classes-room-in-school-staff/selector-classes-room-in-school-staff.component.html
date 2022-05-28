@@ -1,0 +1,7 @@
+<mat-form-field style=" width:250px" appearance="fill">
+    <mat-label>Select Class Room</mat-label>            
+        <mat-select [(ngModel)]="selectedClassRoom" (selectionChange)="selectClassRoom()"  placeholder="Schools Name">
+            <mat-option *ngFor="let classRoom of classesRooms" [value]="classRoom">{{classRoom.grade}}-{{classRoom.ordinalNumber}}</mat-option>
+            
+        </mat-select>
+    </mat-form-field>

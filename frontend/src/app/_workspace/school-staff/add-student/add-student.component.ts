@@ -3,12 +3,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { StudentModel } from '../../models/student-model';
 import { StudentServiceService } from '../../services/student-service.service';
-import {schoolStaffURL} from '../../models/global-constant'
 import { SchoolClassModel } from '../../models/school-class-model';
 import { SchoolClassServiceService } from '../../services/school-class-service.service'
 import Swal from 'sweetalert2';
 import { SchoolServiceService } from '../../services/school-service.service';
 import { SchoolModel } from '../../models/school-model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-add-student',
@@ -31,8 +31,9 @@ export class AddStudentComponent implements OnInit {
     },
   ];
 
-  constructor(private fb: FormBuilder,
-    private router:Router,
+  constructor(
+    private _location: Location,
+    private fb: FormBuilder,
     private studetnService:StudentServiceService,
     private shoolClassService:SchoolClassServiceService,
     private schoolService:SchoolServiceService
@@ -73,7 +74,7 @@ export class AddStudentComponent implements OnInit {
             text: 'Student was added Successfully...!!! ',
         }        
         );
-        this.router.navigate([schoolStaffURL+"/allStudents"])
+        this._location.back();
         }       
         else{
           Swal.fire({
@@ -87,6 +88,6 @@ export class AddStudentComponent implements OnInit {
   }
   
   backToList(){
-    this.router.navigate([schoolStaffURL+"/allStudents"])
+    this._location.back();
   }
 }

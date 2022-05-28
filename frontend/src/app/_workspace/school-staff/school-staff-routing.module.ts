@@ -5,6 +5,7 @@ import { AllStudentsComponent } from './all-students/all-students.component';
 import { UpdateStudentComponent } from './update-student/update-student.component';
 import { AttachStudentsComponent } from './attach-students/attach-students.component';
 import { LinkProgramToSchoolComponent } from './link-program-to-school/link-program-to-school.component';
+import { AllClassesRoomsInSchoolStaffComponent } from './all-classes-rooms-in-school-staff/all-classes-rooms-in-school-staff.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,11 @@ const routes: Routes = [
 {
   path:"linkProgramsToSchool",
     component:LinkProgramToSchoolComponent
-}
+},
+{
+  path:"allClassesRoomsInSchoolStaff",
+    component:AllClassesRoomsInSchoolStaffComponent
+},
 ];
 
 @NgModule({

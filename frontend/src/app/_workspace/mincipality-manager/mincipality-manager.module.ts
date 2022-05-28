@@ -28,6 +28,7 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { UpdateStudentInMuncipalityComponent } from './update-student-in-muncipality/update-student-in-muncipality.component';
 import { ProgramsInSchoolsComponent } from './programs-in-schools/programs-in-schools.component';
 import { UpdateProgramLinkComponent } from './update-program-link/update-program-link.component';
+import { AllClassesRoomsInmuncipalityComponent } from './all-classes-rooms-inmuncipality/all-classes-rooms-inmuncipality.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UpdateProgramLinkComponent } from './update-program-link/update-program
           AddStudentComponent,
           UpdateStudentInMuncipalityComponent,
           ProgramsInSchoolsComponent,
-          UpdateProgramLinkComponent
+          UpdateProgramLinkComponent,
+          AllClassesRoomsInmuncipalityComponent,
   ],
   imports: [
     CommonModule,

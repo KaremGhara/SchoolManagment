@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StudentModel } from '../../models/student-model';
 import { StudentServiceService } from '../../services/student-service.service';
-import { schoolStaffURL } from '../../models/global-constant';
 import { SchoolClassModel } from '../../models/school-class-model';
 import { SchoolClassServiceService } from '../../services/school-class-service.service';
 import { SchoolServiceService } from '../../services/school-service.service';
 import { SchoolModel } from '../../models/school-model';
 import Swal from 'sweetalert2';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-update-student',
@@ -33,9 +34,9 @@ export class UpdateStudentComponent implements OnInit {
   ];
 
   constructor(
+    private _location: Location,
     private fb: FormBuilder,
     private route:ActivatedRoute,
-    private router:Router,
     private studetnService:StudentServiceService,
     private shoolClassService:SchoolClassServiceService,
     private schoolService:SchoolServiceService
@@ -76,7 +77,7 @@ export class UpdateStudentComponent implements OnInit {
             text: 'Student was updated Successfully...!!! ',
         }        
         );
-          this.router.navigate([schoolStaffURL+"/allStudents"])
+        this._location.back();
         }
         else{
           alert(" incorrect!")
@@ -86,7 +87,7 @@ export class UpdateStudentComponent implements OnInit {
   }
  
   backToList(){
-    this.router.navigate([schoolStaffURL+"/allStudents"])
+    this._location.back();
   }
 
 }

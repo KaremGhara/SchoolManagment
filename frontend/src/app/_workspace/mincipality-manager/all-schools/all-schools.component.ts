@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SchoolModel } from '../../models/school-model';
 import { SchoolServiceService } from '../../services/school-service.service';
@@ -49,13 +49,18 @@ export class AllSchoolsComponent implements OnInit {
   refresh() {
     this.getAllSchools();
   }
-
+//show all students in the school
   manageStudents(id:number){
     this.router.navigate([muncipalityManager+'/allStudentsToMuncipality',id])
   }
 
   managePrograms(id:number){
     this.router.navigate([muncipalityManager+'/showProgramsInSchool',id])
+  }
+
+  //show classes rooms to see stdents
+  manageStudentsByClassesRoom(id:number){
+    this.router.navigate([muncipalityManager+'/allClassesRoomInMucipality',id])
   }
  
  
@@ -71,6 +76,5 @@ export class AllSchoolsComponent implements OnInit {
   applyFilter($event:any){
     this.dataSource.filter=$event.target.value;
   }
-
 
 }

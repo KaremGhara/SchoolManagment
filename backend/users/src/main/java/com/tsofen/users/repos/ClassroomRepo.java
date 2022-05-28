@@ -13,6 +13,8 @@ public interface ClassroomRepo extends JpaRepository<Classroom, Integer> {
 	public Classroom findByGradeAndOrdinalNumber(String grade,String ordinalNumber);
 	public Classroom findById(int classId);
 	List<Classroom> findByschool_idEquals(int schooId);
+	Classroom findByschool_idAndId(int schooId,int classRoomId);
+
 
 	
 

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { muncipalityManager } from '../../models/global-constant';
 import { SchoolClassModel } from '../../models/school-class-model';
 import { StudentModel } from '../../models/student-model';
 import { SchoolClassServiceService } from '../../services/school-class-service.service';
 import { StudentServiceService } from '../../services/student-service.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-add-student',
@@ -28,9 +28,9 @@ export class AddStudentComponent implements OnInit {
   ];
 
   constructor(
+    private _location: Location,
     private fb: FormBuilder,
     private route:ActivatedRoute,
-    private router:Router,
     private studetnService:StudentServiceService,
     private shoolClassService:SchoolClassServiceService,
     ) {
@@ -64,7 +64,7 @@ export class AddStudentComponent implements OnInit {
             text: 'Student was added Successfully...!!! ',
         }       
         );
-        this.router.navigate([muncipalityManager+'/allStudentsToMuncipality',this.schoolId])
+        this._location.back();
         }  
         else{ 
           Swal.fire({
@@ -78,7 +78,7 @@ export class AddStudentComponent implements OnInit {
   }
   
   backToList(){
-    this.router.navigate([muncipalityManager+"/allStudentsToMuncipality",this.schoolId])
+    this._location.back();
   }
 
 }

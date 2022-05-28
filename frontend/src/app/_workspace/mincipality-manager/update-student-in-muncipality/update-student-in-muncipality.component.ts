@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { muncipalityManager } from '../../models/global-constant';
 import { SchoolClassModel } from '../../models/school-class-model';
 import { StudentModel } from '../../models/student-model';
 import { SchoolClassServiceService } from '../../services/school-class-service.service';
 import { StudentServiceService } from '../../services/student-service.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-update-student-in-muncipality',
@@ -29,9 +29,9 @@ export class UpdateStudentInMuncipalityComponent implements OnInit {
   ];
 
   constructor(
+    private _location: Location,
     private fb: FormBuilder,
     private route:ActivatedRoute,
-    private router:Router,
     private studetnService:StudentServiceService,
     private shoolClassService:SchoolClassServiceService,
     ) {
@@ -47,11 +47,9 @@ export class UpdateStudentInMuncipalityComponent implements OnInit {
     this.schoolId=this.route.snapshot.params['schoolId'];
     this.shoolClassService.getClassesBySchoolId(this.schoolId).subscribe(data => {
       this.classRooms=data;
-      this.studetnService.getStudentById(this.stdid).subscribe((data)=>{
+      this.studetnService.getStudentById(this.stdid).subscribe(data=>{
         this.studentModel=data;
         this.studentModel.classroom=this.classRooms[this.studentModel.classroom.id];
-      },(e)=>{
-        alert(e);
       })      
     })      
   }
@@ -67,8 +65,7 @@ export class UpdateStudentInMuncipalityComponent implements OnInit {
             text: 'Student was updated Successfully...!!! ',
         }        
         );
-          this.router.navigate([muncipalityManager+"/allStudentsToMuncipality",this.schoolId])
-        }
+        this._location.back();        }
         else{
           alert(" incorrect!")
         }
@@ -78,6 +75,5 @@ export class UpdateStudentInMuncipalityComponent implements OnInit {
 
 
   backToList(){
-    this.router.navigate([muncipalityManager+"/allStudentsToMuncipality",this.schoolId])
-  }
+    this._location.back();  }
 }
