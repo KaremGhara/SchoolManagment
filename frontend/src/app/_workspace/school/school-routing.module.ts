@@ -6,7 +6,7 @@ import {EditLinkedProgramComponent}from './edit-linked-program/edit-linked-progr
 import { ProgramsToSchoolComponent } from './programs-to-school/programs-to-school.component';
 
 const routes: Routes = [{
-    path:"all",
+    path:"allPrograms",
       component:AllSchoolComponent
   },
   {

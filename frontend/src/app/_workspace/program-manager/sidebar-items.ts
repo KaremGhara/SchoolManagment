@@ -30,7 +30,7 @@ export const programManagerRoute: RouteInfo[] =[
 },
 {
   path: '/workspace/school-staff/attach',
-  title: 'Attach Students to all schools',
+  title: 'Attach Students to schools',
   moduleName: 'schoolstaff',
   iconType: 'material-icons-two-tone',
   icon: 'person',
@@ -42,8 +42,8 @@ export const programManagerRoute: RouteInfo[] =[
   submenu: [],
 },
 {
-  path: '/workspace/school/all',
-  title: 'Show Programs to all schools',
+  path: '/workspace/school/allPrograms',
+  title: 'Show Programs Schools',
   moduleName: 'school',
   iconType: 'material-icons-two-tone',
   icon: 'layers',
