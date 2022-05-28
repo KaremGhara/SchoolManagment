@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.tsofen.users.beans.Program;
 import com.tsofen.users.beans.School;
 import com.tsofen.users.beans.User;
+import com.tsofen.users.repos.UserRepo;
 import com.tsofen.users.services.ProgramService;
 import com.tsofen.users.services.SchoolService;
 import com.tsofen.users.services.UserService;
@@ -29,7 +30,10 @@ public class UsersApplication implements CommandLineRunner {
 	
 	@Autowired
 	ProgramService programService;
-
+	
+	
+	@Autowired
+	UserRepo userRepo;
 	@Override
 	public void run(String... args) throws Exception {
 		try
@@ -100,6 +104,8 @@ public class UsersApplication implements CommandLineRunner {
 			user3.setSocialId("445566778");
 			user3.setStatus(true);
 			usersService.createSystemUser(user3);
+			
+			
 	
 			Program program =new Program();
 			program.setName("Math");

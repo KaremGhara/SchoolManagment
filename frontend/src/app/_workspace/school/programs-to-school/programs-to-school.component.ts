@@ -37,7 +37,7 @@ export class ProgramsToSchoolComponent  implements OnInit {
           active: 'Link program to school',
         },
       ];
-    schools:SchoolModel[];
+    public schools:SchoolModel[];
     isTblLoading = true;
     public programFiles: any=File;
     import=false;
@@ -60,7 +60,7 @@ export class ProgramsToSchoolComponent  implements OnInit {
 
   program2school:ProgramToSchool = new ProgramToSchool;
   programs:ProgramModel[] ;
-  school:SchoolModel =new SchoolModel;
+  public schoolData:SchoolModel =new SchoolModel;
   schoolU:SchoolModel =new SchoolModel;
   programs_ids:number[] = [];
   programsNotLinked: ProgramModel[];
@@ -69,6 +69,9 @@ selectedProgId:ProgramModel= new ProgramModel;
     const storedItems= JSON.parse(localStorage.getItem('currentUser'))
     this.userId=storedItems.id;
 
+    this.schoolService.getSchools().subscribe(data=>{
+      this.schools=data;
+    })
     this.schoolService.getSchoolByUserId(this.userId).subscribe(res => {
       this.schoolU=res;
       this.findBySchool();
@@ -77,7 +80,7 @@ selectedProgId:ProgramModel= new ProgramModel;
     }
 
     public findBySchool(){
-      this.programService.getProgramBySchoolId(this.schoolU.id).subscribe(data => {    
+      this.programService.getProgramBySchoolId(this.schoolData.id).subscribe(data => {    
         this.programs=data
       })
     }
@@ -112,14 +115,24 @@ selectedProgId:ProgramModel= new ProgramModel;
 
     public schoolWasSelected(school : SchoolModel)
     {
-     this.findBySchool();
-     this.findNotLinked();
-     this.school=school
+     this.programService.findNotLinkedPrograms(school.id).subscribe(data=>{
+      this.programsNotLinked=data
+      this.schoolData=school
+     })
+     this.programService.getProgramBySchoolId(school.id).subscribe(data=>{
+       this.programs=data
+     })
+     this.schoolData=school
     }
   
     
     attachProgToSchool(){
-      this.router.navigate(['/workspace/school/link/', this.selectedProgId.id,this.schoolU.id])
+      alert(this.selectedProgId.id)
+      alert(this.schoolU)
+      console.log(this.schoolData);
+      
+      
+      this.router.navigate(['/workspace/school/link/', this.selectedProgId.id,this.schoolData.id])
     }
    
 

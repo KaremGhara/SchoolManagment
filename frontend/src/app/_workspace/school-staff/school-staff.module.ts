@@ -40,6 +40,7 @@ import { ClassroomcardComponent } from './classroomcard/classroomcard.component'
 import { ClassroomlistComponent } from './classroomlist/classroomlist.component';
 import { ImportFileComponent } from './all-students/dialogs/import-file/import-file.component';
 import { AviableProgramCardComponent } from './aviable-program-card/aviable-program-card.component';
+import { LinkProgramToSchoolComponent } from './link-program-to-school/link-program-to-school.component';
 
 
 
@@ -60,7 +61,8 @@ import { AviableProgramCardComponent } from './aviable-program-card/aviable-prog
     ClassroomcardComponent,
     ClassroomlistComponent,
     ImportFileComponent,
-    AviableProgramCardComponent
+    AviableProgramCardComponent,
+    LinkProgramToSchoolComponent
   ],
   imports: [
     CommonModule,

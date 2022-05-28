@@ -55,9 +55,9 @@ export const schoolStaffRoute: RouteInfo[] =[
       submenu: [],
     },
     {
-      path: '/workspace/school/linkProgramsSchool',
+      path: '/workspace/school-staff/linkProgramsToSchool',
       title: 'Link program to school',
-      moduleName: 'school',
+      moduleName: 'schoolstaff',
       iconType: 'material-icons-two-tone',
       icon: 'layers',
       class: '',
