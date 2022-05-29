@@ -1,0 +1,20 @@
+<app-screen-container [title]="'My Profile'" [breadscrums]="breadscrums">
+    <mat-card class="example-card">
+        <mat-card-title-group>
+          <mat-card-title>{{programManager.firstName}} {{programManager.lastName}}</mat-card-title>
+          <mat-card-subtitle>{{programManager.email}}</mat-card-subtitle>
+          <img mat-card-sm-image src={{programManager.userImg}} appearance="fill"alt="Photo of a Shiba Inu">
+        </mat-card-title-group>
+        <mat-card-content>
+          <p>Social Id: {{programManager.socialId}}</p>
+          <p>Phone: {{programManager.phone}}</p>
+          <p>Role: {{programManager.role}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="updateProfileProgramManager()"><mat-icon aria-label="Edit">edit
+          </mat-icon></button>
+        </mat-card-actions>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+</app-screen-container> 

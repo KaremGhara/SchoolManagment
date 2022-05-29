@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ProgramManagerRoutingModule } from './program-manager-routing.module';
 import {CommonUtilsModule } from '../common-utils/common-utils.module';
 import { SharedModule } from '../../shared/shared.module';
-
 import { ProgramImageComponent } from './program-image/program-image.component';
 import { ProgramDetailsComponent } from './program-details/program-details.component';
 import { AllProgramComponent } from './all-program/all-program.component';
 import { AddProgramComponent } from './add-program/add-program.component';
 import { EditProgramComponent } from './edit-program/edit-program.component';
 import { DeleteProgramComponent } from './delete-program/delete-program.component';
-
-
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,6 +31,9 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { AttachStudentsComponent } from './attach-students/attach-students.component';
 import { ProgramsSchoolsComponent } from './programs-schools/programs-schools.component';
 import { UpdateProgramLinkInProgramManagerComponent } from './update-program-link-in-program-manager/update-program-link-in-program-manager.component';
+import { ProfileProgramManagerComponent } from './profile-program-manager/profile-program-manager.component';
+import { MatCardModule } from '@angular/material/card';
+import { UpdateProgramManagerComponent } from './update-program-manager/update-program-manager.component';
 @NgModule({
   declarations: [
 
@@ -47,6 +46,8 @@ import { UpdateProgramLinkInProgramManagerComponent } from './update-program-lin
       AttachStudentsComponent,
       ProgramsSchoolsComponent,
       UpdateProgramLinkInProgramManagerComponent,
+      ProfileProgramManagerComponent,
+      UpdateProgramManagerComponent,
 
   ],
   imports: [
@@ -73,6 +74,7 @@ import { UpdateProgramLinkInProgramManagerComponent } from './update-program-lin
     MaterialFileInputModule,
     MatProgressSpinnerModule,
     ComponentsModule,
+    MatCardModule,
   ]
 })
 export class ProgramManagerModule { }
