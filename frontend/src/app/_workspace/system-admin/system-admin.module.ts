@@ -32,6 +32,8 @@ import { AttachSchoolStaffToSchoolComponent } from './attach-school-staff-to-sch
 import { SchoolStaffSelectorComponent } from './school-staff-selector/school-staff-selector.component';
 import { AdminDetailsComponent } from './admin-details/admin-details.component';
 import { MatCardModule } from '@angular/material/card';
+import { ProfileAdminComponent } from './profile-admin/profile-admin.component';
+import { UpdateProfileAdminComponent } from './update-profile-admin/update-profile-admin.component';
 
 
 
@@ -47,7 +49,9 @@ import { MatCardModule } from '@angular/material/card';
     ImportComponent,
     AttachSchoolStaffToSchoolComponent,
     SchoolStaffSelectorComponent,
-    AdminDetailsComponent
+    AdminDetailsComponent,
+    ProfileAdminComponent,
+    UpdateProfileAdminComponent
     
   ],
   imports: [

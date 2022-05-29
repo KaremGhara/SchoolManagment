@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
+import { UserModel } from '../../models/user-model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { UserModel } from '../../models/user-model';
 import { UserServiceService } from '../../services/user-service.service';
-import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-update-program-manager',
-  templateUrl: './update-program-manager.component.html',
-  styleUrls: ['./update-program-manager.component.sass']
+  selector: 'app-update-profile-admin',
+  templateUrl: './update-profile-admin.component.html',
+  styleUrls: ['./update-profile-admin.component.sass']
 })
-export class UpdateProgramManagerComponent implements OnInit {
+export class UpdateProfileAdminComponent implements OnInit {
+
   breadscrums = [
     {
       title: 'Update My Profile',
@@ -19,33 +20,33 @@ export class UpdateProgramManagerComponent implements OnInit {
     },
   ];
   hide = true;
-  updateProgramManager:UserModel=new UserModel();
-  programManagerForm: FormGroup;
-  programManagerId:number;
+  updateAdmin:UserModel=new UserModel();
+  adminForm: FormGroup;
+  adminId:number;
 
   constructor(
     private _location: Location,
     private fb: FormBuilder,
-    private programManagerService: UserServiceService,
+    private adminService: UserServiceService,
     ) {
-      this.programManagerForm = this.fb.group({
+      this.adminForm = this.fb.group({
       });
-      this.programManagerForm.addControl("password", new FormControl('', [Validators.required]))
+      this.adminForm.addControl("password", new FormControl('', [Validators.required]))
 
   }
 
   ngOnInit(): void {
     const storedItems= JSON.parse(localStorage.getItem('currentUser'))
-     this.programManagerId=storedItems.id;
-     this.programManagerService.getUserById(this.programManagerId).subscribe(data=>{
-      this.updateProgramManager=data;
+     this.adminId=storedItems.id;
+     this.adminService.getUserById(this.adminId).subscribe(data=>{
+      this.updateAdmin=data;
         
       })
 
 
   }
 
-  UpdateProgramManager(){
+  UpdateAdmin(){
     const storedItems= JSON.parse(localStorage.getItem('currentUser'))
     Swal.fire({
       title: " Update",
@@ -57,7 +58,7 @@ export class UpdateProgramManagerComponent implements OnInit {
       confirmButtonText: 'Yes',
     }).then((result) => {
       if (result.value) {            
-        this.programManagerService.updateSystemUser(this.updateProgramManager).subscribe(res =>{
+        this.adminService.updateSystemUser(this.updateAdmin).subscribe(res =>{
           if(res){
 
             this._location.back();
@@ -89,8 +90,8 @@ export class UpdateProgramManagerComponent implements OnInit {
       const reader = new FileReader()
       reader.onload = (e) => {
    
-        this.updateProgramManager.userImg= e.target.result as string;
-        console.log(this.updateProgramManager.userImg);
+        this.updateAdmin.userImg= e.target.result as string;
+        console.log(this.updateAdmin.userImg);
         
 
       
@@ -98,5 +99,4 @@ export class UpdateProgramManagerComponent implements OnInit {
       reader.readAsDataURL(file)
     }
   }
-
 }

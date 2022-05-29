@@ -134,7 +134,7 @@ export class HeaderComponent
     // }
 
     if (stortedItems.role== this.role.Admin) {
-      this.homePage = 'workspace/system-admin/adminDerails';
+      this.homePage = 'workspace/system-admin/profileAdmin';
     } else if (stortedItems.role==this.role.SchoolStaff) {
       this.homePage = 'workspace/school-staff/schoolStaffDerails';
     } else if (stortedItems.role== this.role.MuncipalityManager) {
@@ -265,7 +265,7 @@ export class HeaderComponent
   Account(){
     const stortedItems=JSON.parse(localStorage.getItem('currentUser'))
     if (stortedItems.role== this.role.Admin) {
-      this.router.navigate(['workspace/system-admin/adminDerails']);
+      this.router.navigate(['workspace/system-admin/profileAdmin']);
     } else if (stortedItems.role==this.role.SchoolStaff) {
       this.router.navigate(['workspace/school-staff/schoolStaffDerails']);
     } else if (stortedItems.role== this.role.MuncipalityManager) {
@@ -278,7 +278,7 @@ export class HeaderComponent
   Setting(){
     const stortedItems=JSON.parse(localStorage.getItem('currentUser'))
     if (stortedItems.role== this.role.Admin) {
-      this.router.navigate(['workspace/system-admin/adminDerails']);
+      this.router.navigate(['workspace/system-admin/updateAdmin']);
     } else if (stortedItems.role==this.role.SchoolStaff) {
       this.router.navigate(['workspace/school-staff/schoolStaffDerails']);
     } else if (stortedItems.role== this.role.MuncipalityManager) {

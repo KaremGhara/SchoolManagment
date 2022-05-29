@@ -1,0 +1,26 @@
+<app-screen-container [title]="'Update My Profile'" [breadscrums]="breadscrums">
+
+    <form #formInfo="ngForm" class="form m-4"  [formGroup]="adminForm">
+            <mat-card-title>{{updateAdmin.firstName}} {{updateAdmin.lastName}}</mat-card-title>
+              
+        <mat-card-content>
+            <p>Social Id: {{updateAdmin.socialId}}</p>
+            <p>Phone: {{updateAdmin.phone}}</p>
+            <p>Role: {{updateAdmin.role}}</p>
+            <p>Role: {{updateAdmin.email}}</p>
+          </mat-card-content>
+        <div class="col-md-12 col-sm-12" > 
+          <mat-form-field style="margin:10px; width:250px" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="updateAdmin.password" [formControl]="adminForm.get('password')"   required>
+          </mat-form-field>    
+          <mat-icon (click)="fileInput.click()">add_a_photo</mat-icon>
+          <input #fileInput formControlName="userImage" type="button" [(ngModel)]="updateAdmin.userImg" (click)="onFileInput()"  style="display:none;" />
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <button class="btn-space"  mat-raised-button
+          color="primary"(click)="UpdateAdmin()">Submit</button>
+        <button type="button" mat-button (click)="backToList()">Cancel</button>
+      </div> 
+    </form>
+</app-screen-container> 
